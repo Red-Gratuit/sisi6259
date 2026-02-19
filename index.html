@@ -903,7 +903,7 @@
         .toggle-pw { position: absolute; right: 18px; bottom: 16px; font-size: 18px; cursor: pointer; background: none; border: none; padding: 0; line-height: 1; }
         .login-btn { margin-top: 5px; padding: 18px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 15px; color: white; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
         .login-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(102,126,234,0.6); }
-        .login-error { display: none; background: rgba(245,87,108,0.12); border: 2px solid rgba(245,87,108,0.4); color: #c53030; border-radius: 12px; padding: 14px 18px; font-size: 14px; font-weight: 500; animation: shake 0.4s ease; }
+        .login-error { display: none; background: rgba(245,87,108,0.12); border: 2px solid rgba(245,87,108,0.4); color: #c53030; border-radius: 12px; padding: 14px 18px; font-size: 14px; font-weight: 500; }
         @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
 
         /* ===== PANEL ADMIN ===== */
@@ -912,8 +912,8 @@
         .admin-header-bar { background: rgba(255,255,255,0.98); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .admin-welcome { font-size: 18px; font-weight: 700; color: #2d3748; }
         .admin-welcome span { background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .logout-btn { padding: 10px 22px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(245,87,108,0.3); }
-        .logout-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,87,108,0.5); }
+        .logout-btn { padding: 10px 22px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .logout-btn:hover { transform: translateY(-2px); }
         .admin-form { background: rgba(255,255,255,0.98); border-radius: 25px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 25px; }
         .admin-form h3 { font-size: 22px; font-weight: 700; color: #2d3748; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
         .form-row { margin-bottom: 20px; }
@@ -923,28 +923,31 @@
         .form-row textarea { resize: vertical; min-height: 90px; }
 
         /* Upload zone */
-        .upload-zone {
-            border: 3px dashed #cbd5e0; border-radius: 20px;
-            padding: 40px 20px; text-align: center; cursor: pointer;
-            transition: all 0.3s ease; background: #f7fafc;
-            position: relative;
-        }
-        .upload-zone:hover, .upload-zone.dragover { border-color: #667eea; background: rgba(102,126,234,0.05); }
+        .upload-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .upload-tab { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f7fafc; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: #718096; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .upload-tab.active { border-color: #667eea; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .upload-zone { border: 3px dashed #cbd5e0; border-radius: 20px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f7fafc; position: relative; overflow: hidden; }
+        .upload-zone:hover { border-color: #667eea; background: rgba(102,126,234,0.05); }
         .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
         .upload-icon { font-size: 48px; margin-bottom: 12px; }
         .upload-text { font-size: 15px; font-weight: 600; color: #4a5568; margin-bottom: 6px; }
         .upload-sub { font-size: 13px; color: #a0aec0; }
-        .upload-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .upload-tab { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f7fafc; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: #718096; cursor: pointer; transition: all 0.3s ease; text-align: center; }
-        .upload-tab.active { border-color: #667eea; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
 
         /* Preview */
-        .media-preview { display: none; margin-top: 15px; border-radius: 15px; overflow: hidden; max-height: 280px; position: relative; background: #000; }
+        .media-preview { display: none; margin-top: 15px; border-radius: 15px; overflow: hidden; max-height: 300px; position: relative; background: #000; }
         .media-preview.show { display: block; }
-        .media-preview img, .media-preview video { width: 100%; max-height: 280px; object-fit: contain; display: block; }
-        .preview-remove { position: absolute; top: 10px; right: 10px; background: rgba(245,87,108,0.85); border: none; border-radius: 50%; width: 32px; height: 32px; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .media-preview img, .media-preview video { width: 100%; max-height: 300px; object-fit: contain; display: block; }
+        .preview-remove { position: absolute; top: 10px; right: 10px; background: rgba(245,87,108,0.85); border: none; border-radius: 50%; width: 34px; height: 34px; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5; }
+        .preview-info { background: rgba(0,0,0,0.6); color: white; font-size: 12px; padding: 6px 12px; text-align: center; }
 
-        /* Galerie admin (cartes existantes) */
+        /* Progress bar */
+        .upload-progress { display: none; margin-top: 15px; }
+        .upload-progress.show { display: block; }
+        .progress-bar-wrap { background: #e2e8f0; border-radius: 50px; height: 10px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50px; transition: width 0.3s ease; width: 0%; }
+        .progress-label { font-size: 13px; color: #718096; text-align: center; margin-top: 8px; }
+
+        /* Galerie admin */
         .admin-gallery { background: rgba(255,255,255,0.98); border-radius: 25px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .admin-gallery h3 { font-size: 22px; font-weight: 700; color: #2d3748; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
         .admin-cards-list { display: flex; flex-direction: column; gap: 15px; }
@@ -954,11 +957,10 @@
         .admin-card-info { flex: 1; min-width: 0; }
         .admin-card-name { font-size: 15px; font-weight: 700; color: #2d3748; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .admin-card-cat { font-size: 12px; color: #718096; }
-        .delete-btn { padding: 8px 16px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
-        .delete-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
-
+        .delete-btn { padding: 8px 16px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0; font-family: 'Poppins', sans-serif; }
         .submit-btn { padding: 16px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 15px; color: white; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(102,126,234,0.4); width: 100%; margin-top: 10px; }
-        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(102,126,234,0.6); }
+        .submit-btn:hover { transform: translateY(-3px); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         /* ===== MODAL CARTE ===== */
         .card { cursor: pointer; }
@@ -976,8 +978,7 @@
 
         @media (max-width: 768px) {
             .upload-tabs { flex-direction: column; }
-            .admin-form { padding: 25px; }
-            .admin-gallery { padding: 25px; }
+            .admin-form, .admin-gallery { padding: 25px; }
             .modal-body { padding: 20px 22px 28px; }
         }
 
@@ -1172,7 +1173,7 @@
 
                 <div class="admin-view" id="adminView">
 
-            <!-- PAGE LOGIN -->
+            <!-- LOGIN -->
             <div class="admin-login-page" id="adminLoginPage">
                 <div class="login-card">
                     <span class="login-icon">🔐</span>
@@ -1196,50 +1197,50 @@
                 </div>
             </div>
 
-            <!-- PANEL APRÈS CONNEXION -->
+            <!-- PANEL -->
             <div class="admin-panel" id="adminPanel">
                 <div class="admin-header-bar">
                     <div class="admin-welcome">👋 Bienvenue, <span id="loggedUser">Admin</span></div>
                     <button class="logout-btn" onclick="doLogout()">🚪 Déconnexion</button>
                 </div>
 
-                <!-- FORMULAIRE AJOUT -->
                 <div class="admin-form">
                     <h3>➕ Ajouter un média</h3>
 
-                    <!-- Tabs : Fichier ou URL -->
                     <div class="upload-tabs">
-                        <div class="upload-tab active" id="tabFile" onclick="switchTab('file')">📁 Depuis mon téléphone</div>
+                        <div class="upload-tab active" id="tabFile" onclick="switchTab('file')">📱 Depuis mon téléphone</div>
                         <div class="upload-tab" id="tabUrl" onclick="switchTab('url')">🔗 Depuis une URL</div>
                     </div>
 
-                    <!-- Zone upload fichier -->
+                    <!-- UPLOAD FICHIER -->
                     <div id="sectionFile">
-                        <div class="upload-zone" id="uploadZone"
-                            ondragover="event.preventDefault();this.classList.add('dragover')"
-                            ondragleave="this.classList.remove('dragover')"
-                            ondrop="handleDrop(event)">
+                        <div class="upload-zone" id="uploadZone">
                             <input type="file" id="fileInput" accept="image/*,video/*" onchange="handleFileSelect(event)">
-                            <div class="upload-icon">📸</div>
-                            <div class="upload-text">Appuyez pour choisir une photo ou vidéo</div>
-                            <div class="upload-sub">JPG, PNG, GIF, MP4, MOV acceptés</div>
+                            <div class="upload-icon" id="uploadIcon">📸</div>
+                            <div class="upload-text">Appuyez pour choisir</div>
+                            <div class="upload-sub">Photo ou vidéo · JPG PNG GIF MP4 MOV</div>
                         </div>
                         <div class="media-preview" id="mediaPreview">
-                            <button class="preview-remove" onclick="removeFile()">✕</button>
+                            <button class="preview-remove" onclick="removeFile()" type="button">✕</button>
                             <img id="previewImg" src="" alt="" style="display:none">
                             <video id="previewVid" src="" controls playsinline style="display:none"></video>
+                            <div class="preview-info" id="previewInfo"></div>
+                        </div>
+                        <div class="upload-progress" id="uploadProgress">
+                            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+                            <div class="progress-label" id="progressLabel">Envoi en cours...</div>
                         </div>
                     </div>
 
-                    <!-- Zone URL -->
+                    <!-- URL -->
                     <div id="sectionUrl" style="display:none">
                         <div class="form-row" style="margin-bottom:0">
-                            <label>URL de l'image ou vidéo</label>
+                            <label>URL directe de l'image ou vidéo</label>
                             <input type="text" id="mediaUrl" placeholder="https://exemple.com/photo.jpg">
                         </div>
                     </div>
 
-                    <div style="margin-top:20px">
+                    <div style="margin-top:22px">
                         <div class="form-row">
                             <label>Nom</label>
                             <input type="text" id="mediaName" placeholder="Ex: Arrivage du jour...">
@@ -1254,11 +1255,11 @@
                             <label>Description (optionnel)</label>
                             <textarea id="mediaDescription" placeholder="Description..."></textarea>
                         </div>
-                        <button class="submit-btn" onclick="submitMedia()">✅ Publier dans la galerie</button>
+                        <button class="submit-btn" id="submitBtn" onclick="submitMedia()">✅ Publier dans la galerie</button>
                     </div>
                 </div>
 
-                <!-- LISTE DES CARTES EXISTANTES -->
+                <!-- CARTES EXISTANTES -->
                 <div class="admin-gallery">
                     <h3>🗂️ Cartes publiées</h3>
                     <div class="admin-cards-list" id="adminCardsList">
@@ -1278,7 +1279,7 @@
         const musicBtn = document.getElementById('musicBtn');
         let isMusicPlaying = false, musicStarted = false, isAdminLoggedIn = false;
         let currentTab = 'file';
-        let selectedFileData = null; // { dataUrl, type }
+        let selectedFile = null; // Fichier brut (File object)
 
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "sisi6259";
@@ -1364,130 +1365,192 @@
             document.getElementById('adminLoginPage').style.display = 'block';
         }
 
-        // ─── Onglets upload ───
+        // ─── Onglets ───
         function switchTab(tab) {
             currentTab = tab;
             document.getElementById('tabFile').classList.toggle('active', tab === 'file');
-            document.getElementById('tabUrl').classList.toggle('active', tab === 'url');
+            document.getElementById('tabUrl').classList.toggle('active',  tab === 'url');
             document.getElementById('sectionFile').style.display = tab === 'file' ? 'block' : 'none';
             document.getElementById('sectionUrl').style.display  = tab === 'url'  ? 'block' : 'none';
         }
 
         // ─── Sélection fichier ───
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
             if (file) processFile(file);
         }
-        function handleDrop(event) {
-            event.preventDefault();
-            document.getElementById('uploadZone').classList.remove('dragover');
-            const file = event.dataTransfer.files[0];
-            if (file) processFile(file);
-        }
+
         function processFile(file) {
             const isVideo = file.type.startsWith('video/');
             const isImage = file.type.startsWith('image/');
-            if (!isVideo && !isImage) { alert('❌ Format non supporté. Utilisez une image ou vidéo.'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                selectedFileData = { dataUrl: e.target.result, type: isVideo ? 'video' : 'image', mimeType: file.type, fileName: file.name };
-                showPreview(e.target.result, isVideo);
-            };
-            reader.readAsDataURL(file);
-        }
-        function showPreview(src, isVideo) {
+            if (!isVideo && !isImage) { alert('❌ Format non supporté.'); return; }
+
+            selectedFile = file;
+            const sizeMB = (file.size / 1024 / 1024).toFixed(1);
+            document.getElementById('previewInfo').textContent = file.name + ' · ' + sizeMB + ' MB';
+
             const preview = document.getElementById('mediaPreview');
             const img = document.getElementById('previewImg');
             const vid = document.getElementById('previewVid');
             preview.classList.add('show');
-            if (isVideo) { vid.src = src; vid.style.display = 'block'; img.style.display = 'none'; }
-            else { img.src = src; img.style.display = 'block'; vid.style.display = 'none'; }
+
+            if (isVideo) {
+                // Pour vidéo : URL objet local (pas de base64, pas de lecture mémoire)
+                const objectUrl = URL.createObjectURL(file);
+                vid.src = objectUrl;
+                vid.style.display = 'block';
+                img.style.display = 'none';
+                document.getElementById('uploadIcon').textContent = '🎥';
+            } else {
+                const reader = new FileReader();
+                reader.onload = e2 => { img.src = e2.target.result; img.style.display = 'block'; vid.style.display = 'none'; };
+                reader.readAsDataURL(file);
+                document.getElementById('uploadIcon').textContent = '🖼️';
+            }
         }
+
         function removeFile() {
-            selectedFileData = null;
+            selectedFile = null;
             document.getElementById('fileInput').value = '';
             document.getElementById('mediaPreview').classList.remove('show');
             document.getElementById('previewImg').src = '';
-            document.getElementById('previewVid').src = '';
+            const vid = document.getElementById('previewVid');
+            URL.revokeObjectURL(vid.src);
+            vid.src = '';
+            document.getElementById('uploadIcon').textContent = '📸';
+            document.getElementById('uploadProgress').classList.remove('show');
         }
 
-        // ─── Soumettre le média ───
+        // ─── Soumettre ───
         async function submitMedia() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
             const name        = document.getElementById('mediaName').value.trim();
             const category    = document.getElementById('mediaCategory').value;
             const description = document.getElementById('mediaDescription').value.trim();
+            const submitBtn   = document.getElementById('submitBtn');
 
             if (!name) { alert('❌ Le nom est obligatoire.'); return; }
 
-            let mediaUrl  = '';
-            let mediaType = 'image';
-
-            if (currentTab === 'file') {
-                if (!selectedFileData) { alert('❌ Choisissez un fichier.'); return; }
-                // Upload du fichier en base64 vers le serveur
-                try {
-                    const res = await fetch('/api/upload', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ data: selectedFileData.dataUrl, mimeType: selectedFileData.mimeType, fileName: selectedFileData.fileName })
-                    });
-                    if (!res.ok) throw new Error('Upload échoué');
-                    const json = await res.json();
-                    mediaUrl  = json.url;
-                    mediaType = selectedFileData.type;
-                } catch(e) {
-                    // Fallback : utiliser le dataUrl directement si pas d'endpoint upload
-                    mediaUrl  = selectedFileData.dataUrl;
-                    mediaType = selectedFileData.type;
-                }
-            } else {
-                mediaUrl = document.getElementById('mediaUrl').value.trim();
-                if (!mediaUrl) { alert('❌ Entrez une URL.'); return; }
-                mediaType = /\.(mp4|mov|webm|avi)$/i.test(mediaUrl) ? 'video' : 'image';
-            }
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Publication en cours...';
 
             try {
-                const res = await fetch('/api/media', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
-                });
-                if (res.ok) {
-                    if (tg) tg.HapticFeedback.notificationOccurred('success');
-                    alert('✅ Publié dans la galerie !');
-                    document.getElementById('mediaName').value = '';
-                    document.getElementById('mediaDescription').value = '';
-                    document.getElementById('mediaUrl').value = '';
-                    removeFile();
-                    loadAdminCards();
-                } else { alert('❌ Erreur lors de la publication.'); }
-            } catch(e) { alert('❌ Erreur réseau : ' + e.message); }
+                let mediaUrl  = '';
+                let mediaType = 'image';
+
+                if (currentTab === 'file') {
+                    if (!selectedFile) { alert('❌ Choisissez un fichier.'); return; }
+
+                    mediaType = selectedFile.type.startsWith('video/') ? 'video' : 'image';
+
+                    // ── Upload multipart/form-data (pas de base64) ──
+                    const formData = new FormData();
+                    formData.append('file', selectedFile);
+                    formData.append('name', name);
+                    formData.append('category', category);
+                    formData.append('description', description);
+                    formData.append('type', mediaType);
+
+                    // Afficher la progress bar
+                    const progress  = document.getElementById('uploadProgress');
+                    const fill      = document.getElementById('progressFill');
+                    const label     = document.getElementById('progressLabel');
+                    progress.classList.add('show');
+
+                    // Upload avec XMLHttpRequest pour avoir la progression
+                    const uploadResult = await new Promise((resolve, reject) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/api/upload');
+                        xhr.upload.onprogress = (e) => {
+                            if (e.lengthComputable) {
+                                const pct = Math.round((e.loaded / e.total) * 100);
+                                fill.style.width = pct + '%';
+                                label.textContent = 'Envoi : ' + pct + '%';
+                            }
+                        };
+                        xhr.onload = () => {
+                            if (xhr.status >= 200 && xhr.status < 300) {
+                                try { resolve(JSON.parse(xhr.responseText)); }
+                                catch(e) { reject(new Error('Réponse invalide du serveur')); }
+                            } else {
+                                reject(new Error('Erreur serveur : ' + xhr.status + ' ' + xhr.responseText));
+                            }
+                        };
+                        xhr.onerror = () => reject(new Error('Erreur réseau'));
+                        xhr.send(formData);
+                    });
+
+                    mediaUrl = uploadResult.url;
+                    label.textContent = '✅ Fichier envoyé !';
+                    fill.style.width = '100%';
+
+                    // Enregistrer la carte dans /api/media
+                    const res = await fetch('/api/media', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
+                    });
+                    if (!res.ok) throw new Error('Erreur enregistrement carte');
+
+                } else {
+                    // Mode URL
+                    mediaUrl = document.getElementById('mediaUrl').value.trim();
+                    if (!mediaUrl) { alert('❌ Entrez une URL.'); return; }
+                    mediaType = /\.(mp4|mov|webm|avi)$/i.test(mediaUrl) ? 'video' : 'image';
+
+                    const res = await fetch('/api/media', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
+                    });
+                    if (!res.ok) throw new Error('Erreur publication');
+                }
+
+                if (tg) tg.HapticFeedback.notificationOccurred('success');
+                alert('✅ Publié dans la galerie !');
+                document.getElementById('mediaName').value = '';
+                document.getElementById('mediaDescription').value = '';
+                document.getElementById('mediaUrl').value = '';
+                removeFile();
+                loadAdminCards();
+                loadGallery();
+
+            } catch(e) {
+                console.error(e);
+                alert('❌ Échec : ' + e.message);
+                if (tg) tg.HapticFeedback.notificationOccurred('error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✅ Publier dans la galerie';
+            }
         }
 
-        // ─── Liste cartes admin ───
+        // ─── Cartes admin ───
         async function loadAdminCards() {
             try {
                 const res  = await fetch('/api/media');
                 const data = await res.json();
                 renderAdminCards(data);
-            } catch(e) { console.log('Erreur chargement cartes admin'); }
+            } catch(e) {}
         }
 
         function renderAdminCards(media) {
             const list = document.getElementById('adminCardsList');
-            if (!media.length) { list.innerHTML = '<p style="color:#718096;text-align:center;padding:20px">Aucune carte publiée</p>'; return; }
-            list.innerHTML = media.map((item, i) => {
+            if (!media || !media.length) {
+                list.innerHTML = '<p style="color:#718096;text-align:center;padding:20px">Aucune carte publiée</p>';
+                return;
+            }
+            list.innerHTML = media.map(item => {
                 const thumb = item.type === 'video'
-                    ? `<div class="admin-card-thumb" style="display:flex;align-items:center;justify-content:center;font-size:26px;background:#edf2f7;">🎥</div>`
-                    : `<img class="admin-card-thumb" src="${item.url}" onerror="this.style.background='#edf2f7'">`;
+                    ? `<div class="admin-card-thumb" style="display:flex;align-items:center;justify-content:center;font-size:26px;background:#edf2f7;border-radius:10px;">🎥</div>`
+                    : `<img class="admin-card-thumb" src="${item.url}" onerror="this.style.background='#edf2f7';this.src=''">`;
                 return `<div class="admin-card-item">
                     ${thumb}
                     <div class="admin-card-info">
                         <div class="admin-card-name">${item.name}</div>
                         <div class="admin-card-cat">${item.category} · ${item.type}</div>
                     </div>
-                    <button class="delete-btn" onclick="deleteCard('${item.id || i}')">🗑️ Supprimer</button>
+                    <button class="delete-btn" onclick="deleteCard('${item.id || item._id || ''}')">🗑️</button>
                 </div>`;
             }).join('');
         }
@@ -1501,7 +1564,7 @@
             } catch(e) { alert('❌ Erreur réseau.'); }
         }
 
-        // ─── Filtres galerie ───
+        // ─── Filtres ───
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (tg) tg.HapticFeedback.impactOccurred('light');
@@ -1559,7 +1622,7 @@
                 </div>`).join('');
         }
 
-        // ─── Modal carte ───
+        // ─── Modal ───
         function openCardModal(i) {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
             const item = window._cards[i];
