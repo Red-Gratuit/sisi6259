@@ -887,125 +887,6 @@
                 font-size: 18px;
             }
         }
-    
-        /* ===== ADMIN TRANSPARENT ===== */
-        .admin-glass {
-            background: rgba(0, 0, 0, 0.40);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-radius: 24px;
-            padding: 24px 20px;
-            color: rgba(255,255,255,0.92);
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        .admin-glass-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: white;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin: 0 0 16px;
-        }
-        .admin-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .admin-input {
-            width: 100%;
-            padding: 14px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.10);
-            color: white;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-        }
-        .admin-input::placeholder { color: rgba(255,255,255,0.55); }
-        .admin-input option { background: #2d1b55; color: white; }
-        .admin-submit {
-            padding: 14px;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 15px;
-            color: white;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            font-family: 'Poppins', sans-serif;
-            transition: transform 0.2s;
-        }
-        .admin-submit:hover { transform: translateY(-2px); }
-        .admin-error {
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 14px;
-            background: rgba(255, 0, 80, 0.18);
-            border: 1px solid rgba(255, 0, 80, 0.35);
-            color: #ffd0dc;
-            font-weight: 700;
-            text-align: center;
-        }
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin: 14px 0 6px;
-        }
-        .admin-action {
-            padding: 10px 14px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.10);
-            color: white;
-            cursor: pointer;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-        }
-        .admin-card-dash {
-            margin-top: 14px;
-            padding: 16px;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.06);
-        }
-        .admin-h3 {
-            margin: 0 0 12px;
-            font-size: 16px;
-            color: white;
-            font-weight: 700;
-        }
-        .admin-hint { margin-top: 8px; font-size: 13px; color: rgba(255,255,255,0.7); }
-        .admin-media-list { display: flex; flex-direction: column; gap: 10px; }
-        .admin-media-item {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(0,0,0,0.18);
-        }
-        .admin-media-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-        .admin-media-name { font-weight: 800; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .admin-media-meta { font-size: 12px; color: rgba(255,255,255,0.65); }
-        .admin-delete {
-            padding: 8px 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,0,80,0.35);
-            background: rgba(255,0,80,0.18);
-            color: #ffd0dc;
-            cursor: pointer;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-
     </style>
 </head>
 <body>
@@ -1187,44 +1068,9 @@
         </div>
 
         <div class="admin-view" id="adminView">
-            <div class="admin-glass">
-                <h2 class="admin-glass-title" id="adminTitle">🔐 CONNEXION ADMIN</h2>
-
-                <form id="adminLoginForm" class="admin-form">
-                    <input class="admin-input" id="adminUser" type="text" placeholder="Nom d'utilisateur" autocomplete="username" required>
-                    <input class="admin-input" id="adminPass" type="password" placeholder="Mot de passe" autocomplete="current-password" required>
-                    <button class="admin-submit" type="submit">Se connecter</button>
-                </form>
-
-                <div id="adminError" class="admin-error" style="display:none;"></div>
-
-                <div id="adminDashboard" style="display:none;">
-                    <div class="admin-actions">
-                        <button class="admin-action" id="adminRefreshBtn" type="button">↻ Rafraîchir</button>
-                        <button class="admin-action" id="adminLogoutBtn" type="button">🚪 Déconnexion</button>
-                    </div>
-
-                    <div class="admin-card-dash">
-                        <h3 class="admin-h3">📤 Ajouter un média</h3>
-                        <form id="adminUploadForm" class="admin-form" enctype="multipart/form-data">
-                            <input class="admin-input" id="mediaName" name="name" type="text" placeholder="Titre" required>
-                            <select class="admin-input" id="mediaCategory" name="category" required>
-                                <option value="Article">📝 Article</option>
-                                <option value="Info">ℹ️ Info</option>
-                                <option value="Contact">📞 Contact</option>
-                            </select>
-                            <textarea class="admin-input" id="mediaDesc" name="description" placeholder="Description (optionnel)" rows="3"></textarea>
-                            <input class="admin-input" id="mediaFile" name="file" type="file" accept="image/*,video/*" required>
-                            <button class="admin-submit" type="submit">Uploader</button>
-                        </form>
-                        <div id="uploadStatus" class="admin-hint"></div>
-                    </div>
-
-                    <div class="admin-card-dash">
-                        <h3 class="admin-h3">🗂️ Médias en ligne</h3>
-                        <div id="adminMediaList" class="admin-media-list"></div>
-                    </div>
-                </div>
+            <div style="background: rgba(255,255,255,0.98); padding: 40px; border-radius: 25px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px;">🔐 Panel Admin</h2>
+                <p style="color: #718096;">Connexion requise pour accéder au panel</p>
             </div>
         </div>
     </div>
@@ -1299,7 +1145,6 @@
                 adminBtn.textContent = '← Retour';
                 adminBtn.classList.add('active');
                 headerTitle.textContent = 'PANEL ADMIN';
-                renderAdminUI();
             }
         }
 
@@ -1367,7 +1212,7 @@
             gallery.innerHTML = filtered.map(item => {
                 const categoryClass = item.category.toLowerCase();
                 return `
-                <div class="card">
+                <div class="card" onclick='openModal({url:item.url,name:item.name,type:item.type,description:item.description||"",category:item.category})' style="cursor:pointer;">
                     <div class="card-media-container">
                         ${item.type === 'video' 
                             ? `<video class="card-media" src="${item.url}" playsinline></video>
@@ -1386,138 +1231,49 @@
         }
 
         
-        // ===== ADMIN PANEL LOGIC =====
-        let adminToken = localStorage.getItem('adminToken') || null;
-
-        function setAdminError(msg) {
-            const box = document.getElementById('adminError');
-            if (!box) return;
-            if (!msg) { box.style.display = 'none'; box.textContent = ''; return; }
-            box.textContent = msg;
-            box.style.display = 'block';
-        }
-
-        function showDashboard(show) {
-            const form = document.getElementById('adminLoginForm');
-            const dash = document.getElementById('adminDashboard');
-            const title = document.getElementById('adminTitle');
-            if (!form || !dash) return;
-            if (show) {
-                form.style.display = 'none';
-                dash.style.display = 'block';
-                if (title) title.textContent = '✅ Admin connecté';
+        // ===== MODALE =====
+        function openModal(item) {
+            const wrap = document.getElementById('modalMediaWrap');
+            document.getElementById('modalTitle').textContent = item.name || '';
+            document.getElementById('modalDesc').textContent = item.description || '';
+            document.getElementById('modalCategory').textContent = item.category || '';
+            if (item.type === 'video') {
+                wrap.innerHTML = '<video src="' + item.url + '" controls autoplay playsinline style="width:100%;max-height:60vh;object-fit:contain;"></video>';
             } else {
-                dash.style.display = 'none';
-                form.style.display = 'flex';
-                if (title) title.textContent = '🔐 CONNEXION ADMIN';
+                wrap.innerHTML = '<img src="' + item.url + '" alt="' + (item.name||'') + '" style="width:100%;max-height:60vh;object-fit:contain;">';
             }
+            const modal = document.getElementById('mediaModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
-        async function refreshAdminMediaList() {
-            const list = document.getElementById('adminMediaList');
-            if (!list) return;
-            list.innerHTML = '<div class="admin-hint">Chargement...</div>';
-            try {
-                const res = await fetch('/api/media');
-                const items = await res.json();
-                if (!Array.isArray(items) || items.length === 0) {
-                    list.innerHTML = '<div class="admin-hint">Aucun média.</div>';
-                    return;
-                }
-                list.innerHTML = items.map(item => `
-                    <div class="admin-media-item">
-                        <div class="admin-media-left">
-                            <div class="admin-media-name">${item.name || 'Sans titre'}</div>
-                            <div class="admin-media-meta">${item.category || ''} • ${item.type || ''}</div>
-                        </div>
-                        <button class="admin-delete" onclick="adminDeleteMedia('${item.id}')">🗑️</button>
-                    </div>
-                `).join('');
-            } catch (e) {
-                list.innerHTML = '<div class="admin-hint">Erreur de chargement.</div>';
-            }
+        function closeModal() {
+            const modal = document.getElementById('mediaModal');
+            modal.style.display = 'none';
+            document.getElementById('modalMediaWrap').innerHTML = '';
+            document.body.style.overflow = '';
         }
 
-        async function adminDeleteMedia(id) {
-            if (!adminToken || !confirm('Supprimer ce média ?')) return;
-            try {
-                const res = await fetch('/api/admin/media/' + id, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': 'Bearer ' + adminToken }
-                });
-                if (!res.ok) { alert('Erreur suppression'); return; }
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch (e) { alert('Erreur réseau'); }
-        }
-
-        async function adminLogin(e) {
-            e.preventDefault();
-            setAdminError('');
-            const username = document.getElementById('adminUser')?.value?.trim();
-            const password = document.getElementById('adminPass')?.value;
-            if (!username || !password) return;
-            try {
-                const res = await fetch('/api/admin/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-                const data = await res.json().catch(() => ({}));
-                if (!res.ok) { setAdminError(data.error || 'Identifiants incorrects'); return; }
-                adminToken = data.token;
-                localStorage.setItem('adminToken', adminToken);
-                showDashboard(true);
-                await refreshAdminMediaList();
-            } catch (err) { setAdminError('Erreur serveur'); }
-        }
-
-        function adminLogout() {
-            adminToken = null;
-            localStorage.removeItem('adminToken');
-            setAdminError('');
-            showDashboard(false);
-        }
-
-        async function adminUpload(e) {
-            e.preventDefault();
-            if (!adminToken) return;
-            const status = document.getElementById('uploadStatus');
-            const file = document.getElementById('mediaFile')?.files?.[0];
-            if (!file) return;
-            const fd = new FormData();
-            fd.append('name', document.getElementById('mediaName').value);
-            fd.append('category', document.getElementById('mediaCategory').value);
-            fd.append('description', document.getElementById('mediaDesc').value);
-            fd.append('file', file);
-            if (status) status.textContent = 'Upload en cours...';
-            try {
-                const res = await fetch('/api/admin/upload', {
-                    method: 'POST',
-                    headers: { 'Authorization': 'Bearer ' + adminToken },
-                    body: fd
-                });
-                const data = await res.json().catch(() => ({}));
-                if (!res.ok) { if (status) status.textContent = data.error || 'Erreur'; return; }
-                if (status) status.textContent = '✅ Uploadé !';
-                document.getElementById('adminUploadForm').reset();
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch (e) { if (status) status.textContent = 'Erreur réseau'; }
-        }
-
-        function renderAdminUI() {
-            showDashboard(!!adminToken);
-            if (adminToken) refreshAdminMediaList();
-        }
-
-        document.getElementById('adminLoginForm')?.addEventListener('submit', adminLogin);
-        document.getElementById('adminUploadForm')?.addEventListener('submit', adminUpload);
-        document.getElementById('adminLogoutBtn')?.addEventListener('click', adminLogout);
-        document.getElementById('adminRefreshBtn')?.addEventListener('click', refreshAdminMediaList);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
 
 loadGallery();
         setInterval(loadGallery, 30000);
     </script>
+
+    <!-- MODALE PLEIN ÉCRAN -->
+    <div id="mediaModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)closeModal()">
+        <div style="position:relative;background:rgba(20,10,40,0.98);border-radius:22px;max-width:680px;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 20px 80px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.1);">
+            <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:10;">✕</button>
+            <div id="modalMediaWrap" style="width:100%;max-height:60vh;border-radius:22px 22px 0 0;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
+            <div style="padding:18px 20px 22px;">
+                <div id="modalCategory" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a78bfa;margin-bottom:6px;"></div>
+                <h2 id="modalTitle" style="font-size:20px;font-weight:800;color:white;margin:0 0 8px;"></h2>
+                <p id="modalDesc" style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0;"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
