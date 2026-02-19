@@ -888,177 +888,90 @@
             }
         }
     
-
-        /* Scroll fixes (Telegram / mobile) */
-        html, body {
-            height: 100%;
+        /* ===== MODALE PLEIN ÉCRAN ===== */
+        .media-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.88);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .media-modal.open {
+            display: flex;
+        }
+        .modal-inner {
+            position: relative;
+            background: rgba(30,20,50,0.97);
+            border-radius: 22px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 92vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            touch-action: pan-y;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: modalIn 0.25s ease;
         }
-
-        .admin-view {
-            display: none;
-            position: relative;
-            z-index: 2;
-            padding: 25px;
+        @keyframes modalIn {
+            from { transform: scale(0.92); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
         }
-        .admin-view.active {
-            display: block;
-        }
-
-        .admin-panel {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .admin-glass {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 22px;
-            padding: 22px;
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
-            color: rgba(255,255,255,0.92);
-        }
-
-        .admin-title {
-            font-size: 22px;
-            margin-bottom: 12px;
-            text-align: center;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .admin-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .admin-input {
-            width: 100%;
-            padding: 14px 14px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.10);
-            color: white;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-        }
-        .admin-input::placeholder { color: rgba(255,255,255,0.65); }
-
-        .admin-submit {
-            padding: 14px;
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(255,255,255,0.12);
             border: none;
-            border-radius: 14px;
+            color: white;
+            font-size: 18px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
-            font-weight: 800;
-            color: white;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            z-index: 10;
+            line-height: 1;
         }
-
-        .admin-error {
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 14px;
-            background: rgba(255, 0, 80, 0.18);
-            border: 1px solid rgba(255, 0, 80, 0.35);
-            color: #ffd0dc;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin: 10px 0 0;
-        }
-
-        .admin-action {
-            padding: 10px 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.10);
-            color: white;
-            cursor: pointer;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .admin-card {
-            margin-top: 16px;
-            padding: 16px;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.14);
-            background: rgba(255,255,255,0.08);
-        }
-
-        .admin-h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
-            color: white;
-        }
-
-        .admin-hint {
-            margin-top: 10px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.75);
-        }
-
-        .admin-media-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .admin-media-item {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(0,0,0,0.18);
-        }
-
-        .admin-media-left {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-        }
-
-        .admin-media-name {
-            font-weight: 800;
-            color: white;
-            white-space: nowrap;
+        .modal-media-wrap {
+            width: 100%;
+            max-height: 60vh;
             overflow: hidden;
-            text-overflow: ellipsis;
+            border-radius: 22px 22px 0 0;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
-        .admin-media-meta {
+        .modal-media-wrap img,
+        .modal-media-wrap video {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+        .modal-info {
+            padding: 18px 20px 22px;
+        }
+        .modal-category {
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #a78bfa;
+            margin-bottom: 6px;
         }
-
-        .admin-delete {
-            padding: 10px 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 0, 80, 0.35);
-            background: rgba(255, 0, 80, 0.18);
-            color: #ffd0dc;
-            cursor: pointer;
+        .modal-title {
+            font-size: 20px;
             font-weight: 800;
+            color: white;
+            margin: 0 0 8px;
         }
-
-        @media (max-width: 520px) {
-            .admin-actions { justify-content: space-between; }
+        .modal-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+            margin: 0;
         }
 
 
@@ -1243,59 +1156,18 @@
         </div>
 
         <div class="admin-view" id="adminView">
-            <div class="admin-panel">
-                <div class="admin-glass" id="adminBox">
-                    <h2 class="admin-title" id="adminTitle">🔐 Connexion Admin</h2>
-
-                    <form id="adminLoginForm" class="admin-form">
-                        <input class="admin-input" id="adminUser" type="text" placeholder="Nom d'utilisateur" autocomplete="username" required>
-                        <input class="admin-input" id="adminPass" type="password" placeholder="Mot de passe" autocomplete="current-password" required>
-                        <button class="admin-submit" type="submit">Se connecter</button>
-                    </form>
-
-                    <div id="adminError" class="admin-error" style="display:none;"></div>
-
-                    <div id="adminDashboard" style="display:none;">
-                        <div class="admin-actions">
-                            <button class="admin-action" id="adminRefreshBtn" type="button">↻ Rafraîchir</button>
-                            <button class="admin-action" id="adminLogoutBtn" type="button">🚪 Déconnexion</button>
-                        </div>
-
-                        <div class="admin-card">
-                            <h3 class="admin-h3">📤 Ajouter un média</h3>
-                            <form id="adminUploadForm" class="admin-form" enctype="multipart/form-data">
-                                <input class="admin-input" id="mediaName" name="name" type="text" placeholder="Titre" required>
-                                <select class="admin-input" id="mediaCategory" name="category" required>
-                                    <option value="Article">📝 Article</option>
-                                    <option value="Info">ℹ️ Info</option>
-                                    <option value="Contact">📞 Contact</option>
-                                </select>
-                                <textarea class="admin-input" id="mediaDesc" name="description" placeholder="Description (optionnel)" rows="3"></textarea>
-                                <input class="admin-input" id="mediaFile" name="file" type="file" accept="image/*,video/*" required>
-                                <button class="admin-submit" type="submit">Uploader</button>
-                            </form>
-                            <div id="uploadStatus" class="admin-hint"></div>
-                        </div>
-
-                        <div class="admin-card">
-                            <h3 class="admin-h3">🗂️ Médias</h3>
-                            <div id="adminMediaList" class="admin-media-list"></div>
-                        </div>
-                    </div>
-                </div>
+            <div style="background: rgba(255,255,255,0.98); padding: 40px; border-radius: 25px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px;">🔐 Panel Admin</h2>
+                <p style="color: #718096;">Connexion requise pour accéder au panel</p>
             </div>
         </div>
     </div>
 
     <script>
-        const tg = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
+        let tg = window.Telegram?.WebApp;
         if (tg) {
             tg.expand();
             tg.ready();
-            // Fix scroll in Telegram Mini-App (avoid vertical swipe collapsing)
-            if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
-            document.documentElement.style.overflowY = 'auto';
-            document.body.style.overflowY = 'auto';
         }
 
         let currentFilter = 'Article';
@@ -1361,7 +1233,6 @@
                 adminBtn.textContent = '← Retour';
                 adminBtn.classList.add('active');
                 headerTitle.textContent = 'PANEL ADMIN';
-                renderAdminUI();
             }
         }
 
@@ -1428,8 +1299,9 @@
 
             gallery.innerHTML = filtered.map(item => {
                 const categoryClass = item.category.toLowerCase();
+                const dataStr = encodeURIComponent(JSON.stringify({url: item.url, name: item.name, type: item.type, description: item.description || '', category: item.category}));
                 return `
-                <div class="card">
+                <div class="card" onclick="openModal(decodeURIComponent('${dataStr}'))" style="cursor:pointer;">
                     <div class="card-media-container">
                         ${item.type === 'video' 
                             ? `<video class="card-media" src="${item.url}" playsinline></video>
@@ -1448,183 +1320,51 @@
         }
 
         
+        // ===== MODALE =====
+        function openModal(jsonStr) {
+            const item = JSON.parse(jsonStr);
+            const wrap = document.getElementById('modalMediaWrap');
+            document.getElementById('modalTitle').textContent = item.name || '';
+            document.getElementById('modalDesc').textContent = item.description || '';
+            document.getElementById('modalCategory').textContent = item.category || '';
 
-        // ===== ADMIN PANEL LOGIC =====
-        let adminToken = localStorage.getItem('adminToken') || null;
-
-        function setAdminError(msg) {
-            const box = document.getElementById('adminError');
-            if (!box) return;
-            if (!msg) {
-                box.style.display = 'none';
-                box.textContent = '';
-                return;
-            }
-            box.textContent = msg;
-            box.style.display = 'block';
-        }
-
-        function showDashboard(show) {
-            const form = document.getElementById('adminLoginForm');
-            const dash = document.getElementById('adminDashboard');
-            const title = document.getElementById('adminTitle');
-            if (!form || !dash || !title) return;
-
-            if (show) {
-                form.style.display = 'none';
-                dash.style.display = 'block';
-                title.textContent = '✅ Admin connecté';
+            if (item.type === 'video') {
+                wrap.innerHTML = `<video src="${item.url}" controls autoplay playsinline style="width:100%;max-height:60vh;"></video>`;
             } else {
-                dash.style.display = 'none';
-                form.style.display = 'flex';
-                title.textContent = '🔐 Connexion Admin';
+                wrap.innerHTML = `<img src="${item.url}" alt="${item.name}" style="width:100%;max-height:60vh;object-fit:contain;">`;
             }
+
+            document.getElementById('mediaModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
-        async function refreshAdminMediaList() {
-            const list = document.getElementById('adminMediaList');
-            if (!list) return;
-            list.innerHTML = '<div class="admin-hint">Chargement...</div>';
-
-            try {
-                const response = await fetch('/api/media');
-                const items = await response.json();
-
-                if (!Array.isArray(items) || items.length === 0) {
-                    list.innerHTML = '<div class="admin-hint">Aucun média.</div>';
-                    return;
-                }
-
-                list.innerHTML = items.map(item => {
-                    const safeName = (item.name || 'Sans titre');
-                    const safeCat = (item.category || '');
-                    const safeType = (item.type || '');
-                    return `
-                        <div class="admin-media-item">
-                            <div class="admin-media-left">
-                                <div class="admin-media-name">${safeName}</div>
-                                <div class="admin-media-meta">${safeCat} • ${safeType}</div>
-                            </div>
-                            <button class="admin-delete" onclick="adminDeleteMedia('${item.id}')">Supprimer</button>
-                        </div>
-                    `;
-                }).join('');
-            } catch (e) {
-                list.innerHTML = '<div class="admin-hint">Erreur de chargement.</div>';
-            }
+        function closeModal(e) {
+            if (e && e.target !== document.getElementById('mediaModal')) return;
+            document.getElementById('mediaModal').classList.remove('open');
+            document.getElementById('modalMediaWrap').innerHTML = '';
+            document.body.style.overflow = '';
         }
 
-        async function adminDeleteMedia(id) {
-            if (!adminToken) return;
-            const ok = confirm('Supprimer ce média ?');
-            if (!ok) return;
-
-            try {
-                const res = await fetch(`/api/admin/media/${id}`, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${adminToken}` }
-                });
-                if (!res.ok) {
-                    const data = await res.json().catch(() => ({}));
-                    alert(data.error || 'Erreur suppression');
-                    return;
-                }
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch (e) {
-                alert('Erreur réseau');
-            }
-        }
-
-        async function adminLogin(e) {
-            e.preventDefault();
-            setAdminError('');
-
-            const username = document.getElementById('adminUser')?.value?.trim();
-            const password = document.getElementById('adminPass')?.value;
-            if (!username || !password) return;
-
-            try {
-                const res = await fetch('/api/admin/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-
-                const data = await res.json().catch(() => ({}));
-                if (!res.ok) {
-                    setAdminError(data.error || 'Identifiants incorrects');
-                    return;
-                }
-
-                adminToken = data.token;
-                localStorage.setItem('adminToken', adminToken);
-                showDashboard(true);
-                await refreshAdminMediaList();
-            } catch (err) {
-                setAdminError('Erreur serveur');
-            }
-        }
-
-        function adminLogout() {
-            adminToken = null;
-            localStorage.removeItem('adminToken');
-            setAdminError('');
-            showDashboard(false);
-        }
-
-        async function adminUpload(e) {
-            e.preventDefault();
-            if (!adminToken) return;
-
-            const status = document.getElementById('uploadStatus');
-            const file = document.getElementById('mediaFile')?.files?.[0];
-            if (!file) return;
-
-            const fd = new FormData();
-            fd.append('name', document.getElementById('mediaName').value);
-            fd.append('category', document.getElementById('mediaCategory').value);
-            fd.append('description', document.getElementById('mediaDesc').value);
-            fd.append('file', file);
-
-            if (status) status.textContent = 'Upload en cours...';
-
-            try {
-                const res = await fetch('/api/admin/upload', {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${adminToken}` },
-                    body: fd
-                });
-
-                const data = await res.json().catch(() => ({}));
-                if (!res.ok) {
-                    if (status) status.textContent = data.error || 'Erreur upload';
-                    return;
-                }
-
-                if (status) status.textContent = '✅ Upload OK';
-                document.getElementById('adminUploadForm').reset();
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch (e) {
-                if (status) status.textContent = 'Erreur réseau';
-            }
-        }
-
-        function renderAdminUI() {
-            // if token exists, show dashboard directly
-            showDashboard(!!adminToken);
-            if (adminToken) refreshAdminMediaList();
-        }
-
-        // Bind admin events
-        document.getElementById('adminLoginForm')?.addEventListener('submit', adminLogin);
-        document.getElementById('adminUploadForm')?.addEventListener('submit', adminUpload);
-        document.getElementById('adminLogoutBtn')?.addEventListener('click', adminLogout);
-        document.getElementById('adminRefreshBtn')?.addEventListener('click', refreshAdminMediaList);
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
 
 loadGallery();
         setInterval(loadGallery, 30000);
     </script>
+
+    <!-- MODALE PLEIN ÉCRAN -->
+    <div id="mediaModal" class="media-modal" onclick="closeModal(event)">
+        <div class="modal-inner" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalMediaWrap" class="modal-media-wrap"></div>
+            <div class="modal-info">
+                <div id="modalCategory" class="modal-category"></div>
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <p id="modalDesc" class="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
