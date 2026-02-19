@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'change-this-secret-key-in-producti
 
 // Configuration
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 // Storage setup
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -88,7 +88,7 @@ function authenticateToken(req, res, next) {
 
 // Page principale
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Servir le logo (PNG ou JPG)
