@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SISI 6259</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* PHOTO COFFEE SHOP EN ARRIÈRE-PLAN */
+            background: 
+                linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 50%, rgba(240, 147, 251, 0.85) 100%),
+                url('/coffeeshop.jpg') center/cover no-repeat fixed;
+            color: #2d3748;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* DRAPEAUX FLOTTANTS (plus discrets) */
+        .floating-flags {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .flag {
+            position: absolute;
+            width: 100px;
+            height: 70px;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+            animation: float 20s infinite ease-in-out;
+            border-radius: 10px;
+            border: 3px solid rgba(255,255,255,0.4);
+        }
+
+        .flag.usa {
+            background: linear-gradient(to bottom,
+                #B22234 0%, #B22234 7.7%,
+                white 7.7%, white 15.4%,
+                #B22234 15.4%, #B22234 23.1%,
+                white 23.1%, white 30.8%,
+                #B22234 30.8%, #B22234 38.5%,
+                white 38.5%, white 46.2%,
+                #B22234 46.2%, #B22234 53.9%,
+                white 53.9%, white 61.6%,
+                #B22234 61.6%, #B22234 69.3%,
+                white 69.3%, white 77%,
+                #B22234 77%, #B22234 84.7%,
+                white 84.7%, white 92.4%,
+                #B22234 92.4%, #B22234 100%);
+            position: relative;
+        }
+
+        .flag.usa::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 50%;
+            background: #3C3B6E;
+        }
+
+        .flag.nl {
+            background: linear-gradient(to bottom,
+                #AE1C28 0%, #AE1C28 33.33%,
+                white 33.33%, white 66.66%,
+                #21468B 66.66%, #21468B 100%);
+        }
+
+        .flag.ma {
+            background: #C1272D;
+            position: relative;
+        }
+
+        .flag.ma::after {
+            content: '★';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+            color: #006233;
+        }
+
+        .flag:nth-child(1) { left: 8%; top: 15%; animation-duration: 25s; animation-delay: 0s; }
+        .flag:nth-child(2) { left: 75%; top: 8%; animation-duration: 30s; animation-delay: 2s; }
+        .flag:nth-child(3) { left: 25%; top: 65%; animation-duration: 22s; animation-delay: 4s; }
+        .flag:nth-child(4) { left: 85%; top: 75%; animation-duration: 28s; animation-delay: 1s; }
+        .flag:nth-child(5) { left: 45%; top: 35%; animation-duration: 26s; animation-delay: 3s; }
+        .flag:nth-child(6) { left: 12%; top: 85%; animation-duration: 24s; animation-delay: 5s; }
+        .flag:nth-child(7) { left: 92%; top: 40%; animation-duration: 27s; animation-delay: 6s; }
+        .flag:nth-child(8) { left: 35%; top: 10%; animation-duration: 23s; animation-delay: 7s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+            25% { transform: translateY(-40px) rotate(3deg) scale(1.08); }
+            50% { transform: translateY(-60px) rotate(-3deg) scale(1.12); }
+            75% { transform: translateY(-40px) rotate(3deg) scale(1.08); }
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05), transparent 40%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .music-btn.playing {
+            animation: pulse-music 2s infinite;
+        }
+
+        @keyframes pulse-music {
+            0%, 100% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 8px 40px rgba(102, 126, 234, 0.8); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+            padding-bottom: 100px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+            padding: 45px 35px;
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 35px;
+            box-shadow: none;
+            animation: headerFadeIn 0.8s ease;
+        }
+
+        @keyframes headerFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0.3;
+            filter: blur(30px);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .logo {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #fff;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover {
+            transform: scale(1.08) translateY(-8px) rotate(5deg);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .admin-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            z-index: 100;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .admin-btn.active {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .filter-container {
+            margin-bottom: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        .filter-btn {
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            color: #4a5568;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .gallery-view.hidden {
+            display: none;
+        }
+
+        /* PAGE INFO */
+        .info-page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: cardFadeIn 0.6s ease;
+        }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-title .icon {
+            font-size: 28px;
+        }
+
+        /* Service Cards */
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .service-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Horaires Cards */
+        .horaires-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .horaire-card {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
+            border: 2px solid rgba(79, 172, 254, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .horaire-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 172, 254, 0.6);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
+        }
+
+        .horaire-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .horaire-label {
+            font-size: 14px;
+            color: #718096;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .horaire-time {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Payment Info */
+        .payment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-item {
+            background: linear-gradient(135deg, rgba(168, 224, 99, 0.1), rgba(86, 171, 47, 0.1));
+            border: 2px solid rgba(86, 171, 47, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-item:hover {
+            border-color: rgba(86, 171, 47, 0.6);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(86, 171, 47, 0.2);
+        }
+
+        .payment-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .payment-text {
+            font-size: 15px;
+            color: #2d3748;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Zones Section avec Drapeaux SVG */
+        .zones-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .zone-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .zone-badge.france {
+            border-color: #0055A4;
+            color: #0055A4;
+        }
+
+        .zone-badge.belgique {
+            border-color: #FDDA24;
+            color: #2d3748;
+            background: linear-gradient(135deg, rgba(253, 218, 36, 0.1), rgba(239, 65, 35, 0.1));
+        }
+
+        .zone-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .flag-svg {
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .flag-svg:hover {
+            transform: scale(1.1);
+        }
+
+        .zone-badge .flag-svg {
+            width: 60px;
+            height: 45px;
+        }
+
+        /* CARTE CONTACT SNAPCHAT */
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #FFFC00, #FFF566);
+            border-radius: 25px;
+            padding: 45px 40px;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(255, 252, 0, 0.3);
+            border: 3px solid #FFFC00;
+            cursor: pointer;
+            min-width: 300px;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.6s;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 252, 0, 0.6);
+            border-color: #FFD700;
+        }
+
+        .contact-icon {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            animation: bounceIcon 2s ease-in-out infinite;
+            color: #000;
+        }
+
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .contact-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-username {
+            font-size: 20px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 18px;
+        }
+
+        .contact-cta {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-cta {
+            background: rgba(0, 0, 0, 0.25);
+            transform: scale(1.05);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: cardFadeIn 0.6s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-media-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa, #e9ecef);
+        }
+
+        .card-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover .card-media {
+            transform: scale(1.15);
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .card-category.article {
+            background: linear-gradient(135deg, #a8e063, #56ab2f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
+        }
+
+        .card-title {
+            font-size: 21px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.7;
+        }
+
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75px;
+            height: 75px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #667eea;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .video-icon {
+            transform: translate(-50%, -50%) scale(1.15);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 100px 30px;
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+        }
+
+        .empty-icon {
+            font-size: 90px;
+            margin-bottom: 25px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .empty-state p {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        .admin-view {
+            display: none;
+        }
+
+        .admin-view.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .flag {
+                width: 70px;
+                height: 50px;
+            }
+
+            .logo {
+                width: 170px;
+                height: 170px;
+            }
+
+            .logo-glow {
+                width: 190px;
+                height: 190px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
+            .admin-btn {
+                top: 15px;
+                right: 15px;
+                padding: 12px 24px;
+                font-size: 13px;
+            }
+
+            .music-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .info-section {
+                padding: 25px;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .horaires-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .zone-badge {
+                padding: 18px 30px;
+                font-size: 18px;
+            }
+
+            .zone-badge .flag-svg {
+                width: 48px;
+                height: 36px;
+            }
+
+            .contact-card {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 40px 30px;
+            }
+
+            .contact-icon svg {
+                width: 70px;
+                height: 70px;
+            }
+
+            .contact-name {
+                font-size: 24px;
+            }
+
+            .contact-username {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- DRAPEAUX FLOTTANTS -->
+    <div class="floating-flags">
+        <div class="flag usa"></div>
+        <div class="flag nl"></div>
+        <div class="flag ma"></div>
+        <div class="flag usa"></div>
+        <div class="flag nl"></div>
+        <div class="flag ma"></div>
+        <div class="flag usa"></div>
+        <div class="flag nl"></div>
+    </div>
+
+    <div class="bg-overlay"></div>
+
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+    <audio id="bgMusic" loop>
+        <source src="/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="content">
+        <button class="admin-btn" id="adminToggle" onclick="toggleAdmin()">🔐 Admin</button>
+
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <img src="/logo.png" alt="SISI 6259" class="logo" onerror="this.src='https://via.placeholder.com/200/667eea/FFFFFF?text=SISI+6259'">
+            </div>
+            <p class="header-title" id="headerTitle">MA GALERIE</p>
+        </div>
+
+        <div class="gallery-view" id="galleryView">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="Article">📝 Article</button>
+                <button class="filter-btn" data-filter="Info">ℹ️ Info</button>
+                <button class="filter-btn" data-filter="Contact">📞 Contact</button>
+            </div>
+
+            <div class="cards-grid" id="gallery"></div>
+
+            <!-- PAGE INFO -->
+            <div class="info-page" id="infoPage" style="display: none;">
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">📍</span> Nos Services
+                    </h2>
+
+                    <div class="service-cards">
+                        <div class="service-card">
+                            <div class="service-icon">📍</div>
+                            <div class="service-name">Meet-Up</div>
+                            <div class="service-desc">Plusieurs Meet-Up à votre disposition<br><br>En privé pour + d'informations...</div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="service-icon">🚚</div>
+                            <div class="service-name">Livraison</div>
+                            <div class="service-desc">Livraison disponible dans les<br><strong>59 / 62</strong> <svg class="flag-svg" width="35" height="26" viewBox="0 0 900 600" style="border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); vertical-align: middle;"><rect width="300" height="600" fill="#002395"/><rect x="300" width="300" height="600" fill="#FFFFFF"/><rect x="600" width="300" height="600" fill="#ED2939"/></svg><br>et <strong>Belgique 02 / 80</strong> <svg class="flag-svg" width="35" height="26" viewBox="0 0 900 600" style="border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); vertical-align: middle;"><rect width="300" height="600" fill="#000000"/><rect x="300" width="300" height="600" fill="#FDDA24"/><rect x="600" width="300" height="600" fill="#EF3340"/></svg></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">⚡</span> Pourquoi nous choisir ?
+                    </h2>
+
+                    <div class="features-grid">
+                        <div class="feature-box">
+                            <div class="feature-icon">🔒</div>
+                            <div class="feature-text">Discrétion<br>garantie</div>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-text">Livraison<br>rapide</div>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">💎</div>
+                            <div class="feature-text">Qualité<br>premium</div>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-text">Service<br>24/7</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">🕐</span> Horaires
+                    </h2>
+
+                    <div class="horaires-cards">
+                        <div class="horaire-card">
+                            <div class="horaire-icon">🚚</div>
+                            <div class="horaire-label">Horaire livraisons</div>
+                            <div class="horaire-time">13h - 00h</div>
+                        </div>
+
+                        <div class="horaire-card">
+                            <div class="horaire-icon">📍</div>
+                            <div class="horaire-label">Horaire sur place</div>
+                            <div class="horaire-time">12h - 01h</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">📦</span> Pour un traitement rapide
+                    </h2>
+
+                    <div class="payment-info">
+                        <div class="payment-item">
+                            <span class="payment-icon">✅</span>
+                            <span class="payment-text">Vérification d'identité (nouveaux clients)</span>
+                        </div>
+
+                        <div class="payment-item">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-text">Modes de paiement : <strong>CASH, BTC, Virement...</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">🗺️</span> Zones de livraison
+                    </h2>
+
+                    <div class="zones-list">
+                        <div class="zone-badge france">
+                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                                <rect width="300" height="600" fill="#002395"/>
+                                <rect x="300" width="300" height="600" fill="#FFFFFF"/>
+                                <rect x="600" width="300" height="600" fill="#ED2939"/>
+                            </svg>
+                            <span class="zone-text">59 / 62</span>
+                        </div>
+
+                        <div class="zone-badge belgique">
+                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                                <rect width="300" height="600" fill="#000000"/>
+                                <rect x="300" width="300" height="600" fill="#FDDA24"/>
+                                <rect x="600" width="300" height="600" fill="#EF3340"/>
+                            </svg>
+                            <span class="zone-text">Belgique 02 / 80</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTACT -->
+            <div class="info-page" id="contactPage" style="display: none;">
+                <div class="info-section">
+                    <h2 class="info-title">
+                        <span class="icon">📞</span> Nous Contacter
+                    </h2>
+
+                    <div class="contact-cards">
+                        <a href="https://www.snapchat.com/add/sisi62259" target="_blank" class="contact-card">
+                            <div class="contact-icon">
+                                <svg width="80" height="80" viewBox="0 0 512 512" fill="currentColor">
+                                    <path d="M496.926,366.6c-3.373-9.176-9.8-14.086-17.112-18.153-1.376-.806-2.641-1.451-3.72-1.947-2.182-1.128-4.414-2.22-6.634-3.305-22.181-10.832-40.627-19.828-43.759-32.047a13.518,13.518,0,0,1,.255-8.128,74.407,74.407,0,0,0,5.069-18.166c15.118-1.3,24.145-9.53,26.816-24.456,1.806-10.081.165-18.693-4.613-24.205a26.158,26.158,0,0,0-6.994-5.458,68.226,68.226,0,0,0,.662-9.966c.018-2.964-.054-6.012-.217-9.053-.859-15.926-5.217-31.337-12.946-45.806C407.271,132.5,372.187,116.1,333.2,116.1h-1.958c-42.088-.239-77.237,17.07-104.545,51.477-7.728,14.469-12.087,29.88-12.946,45.807-.163,3.04-.235,6.088-.217,9.052a68.229,68.229,0,0,0,.662,9.967,26.162,26.162,0,0,0-6.995,5.458c-4.777,5.512-6.419,14.124-4.613,24.205,2.671,14.926,11.7,23.151,26.816,24.456a74.41,74.41,0,0,0,5.069,18.166,13.518,13.518,0,0,1,.255,8.128c-3.132,12.219-21.578,21.215-43.759,32.047-2.22,1.085-4.452,2.177-6.634,3.305-1.079.5-2.344,1.141-3.72,1.947-7.308,4.067-13.739,8.977-17.112,18.153-3.671,9.984-3.462,20.58.6,30.658,4.252,10.547,11.4,17.58,20.679,20.345,10.477,3.124,21.44,2.715,32.643-.126a151.446,151.446,0,0,0,33.542-11.556c3.1-1.495,6.1-2.965,9.028-4.428a83.762,83.762,0,0,1,10.131,16.021,66.678,66.678,0,0,0,18.4,21.267c11.535,8.329,25.462,12.551,41.4,12.551s29.862-4.222,41.4-12.551a66.668,66.668,0,0,0,18.4-21.267,83.746,83.746,0,0,1,10.131-16.021c2.928,1.463,5.929,2.933,9.028,4.428a151.461,151.461,0,0,0,33.542,11.556c11.2,2.841,22.166,3.25,32.643.126,9.276-2.765,16.427-9.8,20.679-20.345C500.388,387.176,500.6,376.58,496.926,366.6Z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-name">Snapchat</div>
+                            <div class="contact-username">@sisi62259</div>
+                            <div class="contact-cta">👆 Cliquez pour nous ajouter</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-view" id="adminView">
+            <div style="background: rgba(255,255,255,0.98); padding: 40px; border-radius: 25px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+                <h2 style="font-size: 28px; margin-bottom: 20px;">🔐 Panel Admin</h2>
+                <p style="color: #718096;">Connexion requise pour accéder au panel</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram?.WebApp;
+        if (tg) {
+            tg.expand();
+            tg.ready();
+        }
+
+        let currentFilter = 'Article';
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isMusicPlaying = false;
+        let musicStarted = false;
+
+        // AUTO-PLAY MUSIQUE AU PREMIER CLIC/TOUCH
+        function startMusicOnInteraction() {
+            if (!musicStarted) {
+                musicStarted = true;
+                bgMusic.play().then(() => {
+                    musicBtn.textContent = '🔊';
+                    musicBtn.classList.add('playing');
+                    isMusicPlaying = true;
+                }).catch(err => {
+                    console.log('Musique non autorisée par le navigateur');
+                });
+
+                document.removeEventListener('click', startMusicOnInteraction);
+                document.removeEventListener('touchstart', startMusicOnInteraction);
+            }
+        }
+
+        document.addEventListener('click', startMusicOnInteraction);
+        document.addEventListener('touchstart', startMusicOnInteraction);
+
+        function toggleMusic() {
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicBtn.textContent = '🎵';
+                musicBtn.classList.remove('playing');
+                isMusicPlaying = false;
+            } else {
+                bgMusic.play().catch(err => console.log('Erreur musique'));
+                musicBtn.textContent = '🔊';
+                musicBtn.classList.add('playing');
+                isMusicPlaying = true;
+            }
+        }
+
+        function toggleAdmin() {
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+
+            const adminView = document.getElementById('adminView');
+            const galleryView = document.getElementById('galleryView');
+            const adminBtn = document.getElementById('adminToggle');
+            const headerTitle = document.getElementById('headerTitle');
+
+            if (adminView.classList.contains('active')) {
+                adminView.classList.remove('active');
+                galleryView.classList.remove('hidden');
+                adminBtn.textContent = '🔐 Admin';
+                adminBtn.classList.remove('active');
+                headerTitle.textContent = 'MA GALERIE';
+                loadGallery();
+            } else {
+                galleryView.classList.add('hidden');
+                adminView.classList.add('active');
+                adminBtn.textContent = '← Retour';
+                adminBtn.classList.add('active');
+                headerTitle.textContent = 'PANEL ADMIN';
+            }
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (tg) tg.HapticFeedback.impactOccurred('light');
+
+                const filter = this.getAttribute('data-filter');
+                currentFilter = filter;
+
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const gallery = document.getElementById('gallery');
+                const infoPage = document.getElementById('infoPage');
+                const contactPage = document.getElementById('contactPage');
+
+                gallery.style.display = 'none';
+                infoPage.style.display = 'none';
+                contactPage.style.display = 'none';
+
+                if (filter === 'Info') {
+                    infoPage.style.display = 'block';
+                } else if (filter === 'Contact') {
+                    contactPage.style.display = 'block';
+                } else {
+                    gallery.style.display = 'grid';
+                    loadGallery();
+                }
+            });
+        });
+
+        async function loadGallery() {
+            try {
+                const response = await fetch('/api/media');
+                const data = await response.json();
+                renderGallery(data);
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+                document.getElementById('gallery').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <h3>Aucun contenu</h3>
+                        <p>La galerie est vide pour le moment</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderGallery(media) {
+            const gallery = document.getElementById('gallery');
+            const filtered = media.filter(m => m.category === currentFilter);
+
+            if (filtered.length === 0) {
+                gallery.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <h3>Aucun contenu</h3>
+                        <p>Aucun média dans la catégorie ${currentFilter}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            gallery.innerHTML = filtered.map(item => {
+                const categoryClass = item.category.toLowerCase();
+                return `
+                <div class="card">
+                    <div class="card-media-container">
+                        ${item.type === 'video' 
+                            ? `<video class="card-media" src="${item.url}" playsinline></video>
+                               <div class="video-icon">▶️</div>`
+                            : `<img class="card-media" src="${item.url}" alt="${item.name}">`
+                        }
+                        <div class="card-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category ${categoryClass}">${item.category}</div>
+                        <h3 class="card-title">${item.name}</h3>
+                        ${item.description ? `<p class="card-description">${item.description}</p>` : ''}
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        loadGallery();
+        setInterval(loadGallery, 30000);
+    </script>
+</body>
+</html>
