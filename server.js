@@ -31,14 +31,15 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max
     fileFilter: (req, file, cb) => {
-        const allowedTypes = /jpeg|jpg|png|gif|mp4|mov|avi|webm/;
-        const ext = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-        const mime = allowedTypes.test(file.mimetype);
-        if (ext && mime) {
-            cb(null, true);
-        } else {
-            cb(new Error('Type de fichier non autorisé'));
-        }
+       const allowedMime = /^(image|video)\//;
+const allowedExt = /\.(jpeg|jpg|png|gif|webp|heic|mp4|mov|avi|webm|mkv)$/i;
+const mimeOk = allowedMime.test(file.mimetype);
+const extOk = allowedExt.test(path.extname(file.originalname).toLowerCase());
+if (mimeOk || extOk) {
+    cb(null, true);
+} else {
+    cb(new Error('Type de fichier non autorisé'));
+}
     }
 });
 
