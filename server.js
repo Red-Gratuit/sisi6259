@@ -230,6 +230,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('\n🚀 SERVEUR SISI 6259 LANCÉ!');
     console.log(`📱 Galerie: http://localhost:${PORT}`);
-    console.log('🔐 Login: admin / admin123');
+    console.log('🔐 Login: admin / sisi6259');
     console.log('⚠️  N\'oublie pas de changer le mot de passe!\n');
 });
