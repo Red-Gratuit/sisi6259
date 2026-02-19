@@ -921,8 +921,6 @@
         .form-row input[type="text"], .form-row textarea, .form-row select { width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 14px; color: #2d3748; background: #f7fafc; outline: none; transition: all 0.3s ease; }
         .form-row input[type="text"]:focus, .form-row textarea:focus, .form-row select:focus { border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102,126,234,0.15); }
         .form-row textarea { resize: vertical; min-height: 90px; }
-
-        /* Upload zone */
         .upload-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .upload-tab { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f7fafc; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: #718096; cursor: pointer; transition: all 0.3s ease; text-align: center; }
         .upload-tab.active { border-color: #667eea; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
@@ -932,26 +930,20 @@
         .upload-icon { font-size: 48px; margin-bottom: 12px; }
         .upload-text { font-size: 15px; font-weight: 600; color: #4a5568; margin-bottom: 6px; }
         .upload-sub { font-size: 13px; color: #a0aec0; }
-
-        /* Preview */
         .media-preview { display: none; margin-top: 15px; border-radius: 15px; overflow: hidden; max-height: 300px; position: relative; background: #000; }
         .media-preview.show { display: block; }
         .media-preview img, .media-preview video { width: 100%; max-height: 300px; object-fit: contain; display: block; }
         .preview-remove { position: absolute; top: 10px; right: 10px; background: rgba(245,87,108,0.85); border: none; border-radius: 50%; width: 34px; height: 34px; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5; }
         .preview-info { background: rgba(0,0,0,0.6); color: white; font-size: 12px; padding: 6px 12px; text-align: center; }
-
-        /* Progress bar */
         .upload-progress { display: none; margin-top: 15px; }
         .upload-progress.show { display: block; }
         .progress-bar-wrap { background: #e2e8f0; border-radius: 50px; height: 10px; overflow: hidden; }
         .progress-bar-fill { height: 100%; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50px; transition: width 0.3s ease; width: 0%; }
         .progress-label { font-size: 13px; color: #718096; text-align: center; margin-top: 8px; }
-
-        /* Galerie admin */
         .admin-gallery { background: rgba(255,255,255,0.98); border-radius: 25px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .admin-gallery h3 { font-size: 22px; font-weight: 700; color: #2d3748; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
         .admin-cards-list { display: flex; flex-direction: column; gap: 15px; }
-        .admin-card-item { display: flex; align-items: center; gap: 18px; background: #f7fafc; border-radius: 15px; padding: 15px 20px; border: 2px solid #e2e8f0; transition: all 0.3s ease; }
+        .admin-card-item { display: flex; align-items: center; gap: 18px; background: #f7fafc; border-radius: 15px; padding: 15px 20px; border: 2px solid #e2e8f0; }
         .admin-card-item:hover { border-color: #667eea; }
         .admin-card-thumb { width: 70px; height: 55px; border-radius: 10px; object-fit: cover; flex-shrink: 0; background: #edf2f7; }
         .admin-card-info { flex: 1; min-width: 0; }
@@ -1212,7 +1204,6 @@
                         <div class="upload-tab" id="tabUrl" onclick="switchTab('url')">🔗 Depuis une URL</div>
                     </div>
 
-                    <!-- UPLOAD FICHIER -->
                     <div id="sectionFile">
                         <div class="upload-zone" id="uploadZone">
                             <input type="file" id="fileInput" accept="image/*,video/*" onchange="handleFileSelect(event)">
@@ -1232,7 +1223,6 @@
                         </div>
                     </div>
 
-                    <!-- URL -->
                     <div id="sectionUrl" style="display:none">
                         <div class="form-row" style="margin-bottom:0">
                             <label>URL directe de l'image ou vidéo</label>
@@ -1259,7 +1249,6 @@
                     </div>
                 </div>
 
-                <!-- CARTES EXISTANTES -->
                 <div class="admin-gallery">
                     <h3>🗂️ Cartes publiées</h3>
                     <div class="admin-cards-list" id="adminCardsList">
@@ -1277,12 +1266,10 @@
         let currentFilter = 'Article';
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
-        let isMusicPlaying = false, musicStarted = false, isAdminLoggedIn = false;
+        let isMusicPlaying = false, musicStarted = false;
         let currentTab = 'file';
-        let selectedFile = null; // Fichier brut (File object)
-
-        const ADMIN_USER = "admin";
-        const ADMIN_PASS = "sisi6259";
+        let selectedFile = null;
+        let jwtToken = null; // Token JWT stocké après login
 
         // ─── Musique ───
         function startMusicOnInteraction() {
@@ -1322,7 +1309,7 @@
                 adminBtn.textContent = '← Retour';
                 adminBtn.classList.add('active');
                 headerTitle.textContent = 'PANEL ADMIN';
-                if (isAdminLoggedIn) {
+                if (jwtToken) {
                     document.getElementById('adminLoginPage').style.display = 'none';
                     document.getElementById('adminPanel').classList.add('active');
                 } else {
@@ -1332,32 +1319,60 @@
             }
         }
 
-        // ─── Login ───
+        // ─── LOGIN → appelle /api/admin/login ───
         function togglePw() {
             const pw = document.getElementById('adminPassword');
             pw.type = pw.type === 'password' ? 'text' : 'password';
         }
-        function doLogin() {
+
+        async function doLogin() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
-            const u = document.getElementById('adminUsername').value.trim();
-            const p = document.getElementById('adminPassword').value;
-            const err = document.getElementById('loginError');
-            if (u === ADMIN_USER && p === ADMIN_PASS) {
-                isAdminLoggedIn = true;
-                err.style.display = 'none';
-                document.getElementById('loggedUser').textContent = u;
-                document.getElementById('adminLoginPage').style.display = 'none';
-                document.getElementById('adminPanel').classList.add('active');
-                loadAdminCards();
-                if (tg) tg.HapticFeedback.notificationOccurred('success');
-            } else {
+            const username = document.getElementById('adminUsername').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            const err      = document.getElementById('loginError');
+            const btn      = document.querySelector('.login-btn');
+
+            if (!username || !password) {
+                err.textContent = '❌ Remplissez tous les champs';
+                err.style.display = 'block'; return;
+            }
+
+            btn.textContent = '⏳ Connexion...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (res.ok && data.token) {
+                    jwtToken = data.token;
+                    err.style.display = 'none';
+                    document.getElementById('loggedUser').textContent = username;
+                    document.getElementById('adminLoginPage').style.display = 'none';
+                    document.getElementById('adminPanel').classList.add('active');
+                    loadAdminCards();
+                    if (tg) tg.HapticFeedback.notificationOccurred('success');
+                } else {
+                    err.textContent = '❌ ' + (data.error || 'Identifiants incorrects');
+                    err.style.display = 'block';
+                    err.style.animation = 'none'; void err.offsetWidth; err.style.animation = 'shake 0.4s ease';
+                    if (tg) tg.HapticFeedback.notificationOccurred('error');
+                }
+            } catch(e) {
+                err.textContent = '❌ Erreur réseau';
                 err.style.display = 'block';
-                err.style.animation = 'none'; void err.offsetWidth; err.style.animation = 'shake 0.4s ease';
-                if (tg) tg.HapticFeedback.notificationOccurred('error');
+            } finally {
+                btn.textContent = '🚀 Se connecter';
+                btn.disabled = false;
             }
         }
+
         function doLogout() {
-            isAdminLoggedIn = false;
+            jwtToken = null;
             document.getElementById('adminUsername').value = '';
             document.getElementById('adminPassword').value = '';
             document.getElementById('loginError').style.display = 'none';
@@ -1365,7 +1380,7 @@
             document.getElementById('adminLoginPage').style.display = 'block';
         }
 
-        // ─── Onglets ───
+        // ─── Onglets upload ───
         function switchTab(tab) {
             currentTab = tab;
             document.getElementById('tabFile').classList.toggle('active', tab === 'file');
@@ -1384,22 +1399,16 @@
             const isVideo = file.type.startsWith('video/');
             const isImage = file.type.startsWith('image/');
             if (!isVideo && !isImage) { alert('❌ Format non supporté.'); return; }
-
             selectedFile = file;
             const sizeMB = (file.size / 1024 / 1024).toFixed(1);
             document.getElementById('previewInfo').textContent = file.name + ' · ' + sizeMB + ' MB';
-
             const preview = document.getElementById('mediaPreview');
-            const img = document.getElementById('previewImg');
-            const vid = document.getElementById('previewVid');
+            const img     = document.getElementById('previewImg');
+            const vid     = document.getElementById('previewVid');
             preview.classList.add('show');
-
             if (isVideo) {
-                // Pour vidéo : URL objet local (pas de base64, pas de lecture mémoire)
-                const objectUrl = URL.createObjectURL(file);
-                vid.src = objectUrl;
-                vid.style.display = 'block';
-                img.style.display = 'none';
+                vid.src = URL.createObjectURL(file);
+                vid.style.display = 'block'; img.style.display = 'none';
                 document.getElementById('uploadIcon').textContent = '🎥';
             } else {
                 const reader = new FileReader();
@@ -1415,13 +1424,14 @@
             document.getElementById('mediaPreview').classList.remove('show');
             document.getElementById('previewImg').src = '';
             const vid = document.getElementById('previewVid');
-            URL.revokeObjectURL(vid.src);
+            if (vid.src) URL.revokeObjectURL(vid.src);
             vid.src = '';
             document.getElementById('uploadIcon').textContent = '📸';
             document.getElementById('uploadProgress').classList.remove('show');
+            document.getElementById('progressFill').style.width = '0%';
         }
 
-        // ─── Soumettre ───
+        // ─── SOUMETTRE → /api/admin/upload avec JWT ───
         async function submitMedia() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
             const name        = document.getElementById('mediaName').value.trim();
@@ -1430,37 +1440,34 @@
             const submitBtn   = document.getElementById('submitBtn');
 
             if (!name) { alert('❌ Le nom est obligatoire.'); return; }
+            if (!jwtToken) { alert('❌ Session expirée, reconnectez-vous.'); doLogout(); return; }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = '⏳ Publication en cours...';
+            submitBtn.textContent = '⏳ Publication...';
 
             try {
-                let mediaUrl  = '';
-                let mediaType = 'image';
-
                 if (currentTab === 'file') {
                     if (!selectedFile) { alert('❌ Choisissez un fichier.'); return; }
 
-                    mediaType = selectedFile.type.startsWith('video/') ? 'video' : 'image';
-
-                    // ── Upload multipart/form-data (pas de base64) ──
                     const formData = new FormData();
                     formData.append('file', selectedFile);
                     formData.append('name', name);
                     formData.append('category', category);
                     formData.append('description', description);
-                    formData.append('type', mediaType);
 
-                    // Afficher la progress bar
-                    const progress  = document.getElementById('uploadProgress');
-                    const fill      = document.getElementById('progressFill');
-                    const label     = document.getElementById('progressLabel');
+                    const progress = document.getElementById('uploadProgress');
+                    const fill     = document.getElementById('progressFill');
+                    const label    = document.getElementById('progressLabel');
                     progress.classList.add('show');
+                    fill.style.width = '0%';
+                    label.textContent = 'Envoi en cours...';
 
-                    // Upload avec XMLHttpRequest pour avoir la progression
-                    const uploadResult = await new Promise((resolve, reject) => {
+                    await new Promise((resolve, reject) => {
                         const xhr = new XMLHttpRequest();
-                        xhr.open('POST', '/api/upload');
+                        // ✅ Bon endpoint : /api/admin/upload
+                        xhr.open('POST', '/api/admin/upload');
+                        // ✅ Header Authorization avec JWT
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
                         xhr.upload.onprogress = (e) => {
                             if (e.lengthComputable) {
                                 const pct = Math.round((e.loaded / e.total) * 100);
@@ -1470,40 +1477,39 @@
                         };
                         xhr.onload = () => {
                             if (xhr.status >= 200 && xhr.status < 300) {
-                                try { resolve(JSON.parse(xhr.responseText)); }
-                                catch(e) { reject(new Error('Réponse invalide du serveur')); }
+                                label.textContent = '✅ Publié !';
+                                fill.style.width = '100%';
+                                resolve();
                             } else {
-                                reject(new Error('Erreur serveur : ' + xhr.status + ' ' + xhr.responseText));
+                                let msg = 'Erreur ' + xhr.status;
+                                try { msg = JSON.parse(xhr.responseText).error || msg; } catch(e){}
+                                reject(new Error(msg));
                             }
                         };
                         xhr.onerror = () => reject(new Error('Erreur réseau'));
                         xhr.send(formData);
                     });
 
-                    mediaUrl = uploadResult.url;
-                    label.textContent = '✅ Fichier envoyé !';
-                    fill.style.width = '100%';
-
-                    // Enregistrer la carte dans /api/media
-                    const res = await fetch('/api/media', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
-                    });
-                    if (!res.ok) throw new Error('Erreur enregistrement carte');
-
                 } else {
                     // Mode URL
-                    mediaUrl = document.getElementById('mediaUrl').value.trim();
+                    const mediaUrl = document.getElementById('mediaUrl').value.trim();
                     if (!mediaUrl) { alert('❌ Entrez une URL.'); return; }
-                    mediaType = /\.(mp4|mov|webm|avi)$/i.test(mediaUrl) ? 'video' : 'image';
+                    const mediaType = /\.(mp4|mov|webm|avi)$/i.test(mediaUrl) ? 'video' : 'image';
 
-                    const res = await fetch('/api/media', {
+                    // Pour le mode URL, on passe par /api/admin/upload aussi
+                    // mais on envoie en JSON avec un champ url
+                    const res = await fetch('/api/admin/upload', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + jwtToken
+                        },
+                        body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description, fromUrl: true })
                     });
-                    if (!res.ok) throw new Error('Erreur publication');
+                    if (!res.ok) {
+                        const d = await res.json().catch(()=>({error:'Erreur'}));
+                        throw new Error(d.error || 'Erreur publication');
+                    }
                 }
 
                 if (tg) tg.HapticFeedback.notificationOccurred('success');
@@ -1525,7 +1531,7 @@
             }
         }
 
-        // ─── Cartes admin ───
+        // ─── LISTE CARTES ADMIN ───
         async function loadAdminCards() {
             try {
                 const res  = await fetch('/api/media');
@@ -1550,21 +1556,26 @@
                         <div class="admin-card-name">${item.name}</div>
                         <div class="admin-card-cat">${item.category} · ${item.type}</div>
                     </div>
-                    <button class="delete-btn" onclick="deleteCard('${item.id || item._id || ''}')">🗑️</button>
+                    <button class="delete-btn" onclick="deleteCard('${item.id}')">🗑️</button>
                 </div>`;
             }).join('');
         }
 
         async function deleteCard(id) {
             if (!confirm('Supprimer cette carte ?')) return;
+            if (!jwtToken) { alert('❌ Session expirée.'); doLogout(); return; }
             try {
-                const res = await fetch('/api/media/' + id, { method: 'DELETE' });
+                // ✅ Bon endpoint : /api/admin/media/:id avec JWT
+                const res = await fetch('/api/admin/media/' + id, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + jwtToken }
+                });
                 if (res.ok) { loadAdminCards(); loadGallery(); }
                 else alert('❌ Impossible de supprimer.');
             } catch(e) { alert('❌ Erreur réseau.'); }
         }
 
-        // ─── Filtres ───
+        // ─── FILTRES ───
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (tg) tg.HapticFeedback.impactOccurred('light');
@@ -1584,7 +1595,7 @@
             });
         });
 
-        // ─── Galerie ───
+        // ─── GALERIE ───
         async function loadGallery() {
             try {
                 const res  = await fetch('/api/media');
@@ -1593,7 +1604,7 @@
             } catch(e) {
                 document.getElementById('gallery').innerHTML = `
                     <div class="empty-state"><div class="empty-icon">📭</div>
-                    <h3>Aucun contenu</h3><p>La galerie est vide pour le moment</p></div>`;
+                    <h3>Aucun contenu</h3><p>La galerie est vide</p></div>`;
             }
         }
 
@@ -1622,7 +1633,7 @@
                 </div>`).join('');
         }
 
-        // ─── Modal ───
+        // ─── MODAL ───
         function openCardModal(i) {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
             const item = window._cards[i];
