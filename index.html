@@ -16,7 +16,6 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* PHOTO COFFEE SHOP EN ARRIÈRE-PLAN */
             background: 
                 linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 50%, rgba(240, 147, 251, 0.85) 100%),
                 url('/coffeeshop.jpg') center/cover no-repeat fixed;
@@ -25,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* DRAPEAUX FLOTTANTS (plus discrets) */
+        /* DRAPEAUX FLOTTANTS */
         .floating-flags {
             position: fixed;
             top: 0;
@@ -176,10 +175,10 @@
             text-align: center;
             margin-bottom: 45px;
             padding: 45px 35px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
+            background: transparent;
+            backdrop-filter: none;
             border-radius: 35px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
             animation: headerFadeIn 0.8s ease;
         }
 
@@ -344,7 +343,6 @@
             font-size: 28px;
         }
 
-        /* Service Cards */
         .service-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -366,25 +364,10 @@
             border-color: rgba(102, 126, 234, 0.4);
         }
 
-        .service-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-        }
+        .service-icon { font-size: 50px; margin-bottom: 15px; }
+        .service-name { font-size: 20px; font-weight: 700; color: #2d3748; margin-bottom: 10px; }
+        .service-desc { font-size: 14px; color: #718096; line-height: 1.6; }
 
-        .service-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-
-        .service-desc {
-            font-size: 14px;
-            color: #718096;
-            line-height: 1.6;
-        }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -406,18 +389,9 @@
             box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
         }
 
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
+        .feature-icon { font-size: 40px; margin-bottom: 12px; }
+        .feature-text { font-size: 15px; font-weight: 600; line-height: 1.4; }
 
-        .feature-text {
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        /* Horaires Cards */
         .horaires-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -439,35 +413,11 @@
             box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
         }
 
-        .horaire-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
+        .horaire-icon { font-size: 45px; margin-bottom: 15px; }
+        .horaire-label { font-size: 14px; color: #718096; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .horaire-time { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #4facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-        .horaire-label {
-            font-size: 14px;
-            color: #718096;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .horaire-time {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Payment Info */
-        .payment-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .payment-info { display: flex; flex-direction: column; gap: 15px; }
 
         .payment-item {
             background: linear-gradient(135deg, rgba(168, 224, 99, 0.1), rgba(86, 171, 47, 0.1));
@@ -486,25 +436,10 @@
             box-shadow: 0 5px 20px rgba(86, 171, 47, 0.2);
         }
 
-        .payment-icon {
-            font-size: 28px;
-            flex-shrink: 0;
-        }
+        .payment-icon { font-size: 28px; flex-shrink: 0; }
+        .payment-text { font-size: 15px; color: #2d3748; font-weight: 500; line-height: 1.5; }
 
-        .payment-text {
-            font-size: 15px;
-            color: #2d3748;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        /* Zones Section avec Drapeaux SVG */
-        .zones-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+        .zones-list { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
 
         .zone-badge {
             display: flex;
@@ -520,37 +455,18 @@
             transition: all 0.3s ease;
         }
 
-        .zone-badge.france {
-            border-color: #0055A4;
-            color: #0055A4;
-        }
-
-        .zone-badge.belgique {
-            border-color: #FDDA24;
-            color: #2d3748;
-            background: linear-gradient(135deg, rgba(253, 218, 36, 0.1), rgba(239, 65, 35, 0.1));
-        }
+        .zone-badge.france { border-color: #0055A4; color: #0055A4; }
+        .zone-badge.belgique { border-color: #FDDA24; color: #2d3748; background: linear-gradient(135deg, rgba(253, 218, 36, 0.1), rgba(239, 65, 35, 0.1)); }
 
         .zone-badge:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
         }
 
-        .flag-svg {
-            vertical-align: middle;
-            transition: transform 0.3s ease;
-        }
+        .flag-svg { vertical-align: middle; transition: transform 0.3s ease; }
+        .flag-svg:hover { transform: scale(1.1); }
+        .zone-badge .flag-svg { width: 60px; height: 45px; }
 
-        .flag-svg:hover {
-            transform: scale(1.1);
-        }
-
-        .zone-badge .flag-svg {
-            width: 60px;
-            height: 45px;
-        }
-
-        /* CARTE CONTACT SNAPCHAT */
         .contact-cards {
             display: flex;
             justify-content: center;
@@ -587,9 +503,7 @@
             transition: left 0.6s;
         }
 
-        .contact-card:hover::before {
-            left: 100%;
-        }
+        .contact-card:hover::before { left: 100%; }
 
         .contact-card:hover {
             transform: translateY(-12px) scale(1.05);
@@ -597,79 +511,63 @@
             border-color: #FFD700;
         }
 
-        .contact-icon {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            animation: bounceIcon 2s ease-in-out infinite;
-            color: #000;
-        }
+        .contact-icon { margin-bottom: 20px; display: flex; justify-content: center; align-items: center; }
+        .contact-name { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+        .contact-username { font-size: 20px; font-weight: 600; opacity: 0.8; margin-bottom: 15px; }
+        .contact-cta { font-size: 14px; font-weight: 600; opacity: 0.7; }
 
-        @keyframes bounceIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .contact-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: #000;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-username {
-            font-size: 20px;
-            font-weight: 700;
-            color: #222;
-            margin-bottom: 18px;
-        }
-
-        .contact-cta {
-            font-size: 15px;
-            font-weight: 600;
-            color: #333;
-            padding: 12px 24px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 50px;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover .contact-cta {
-            background: rgba(0, 0, 0, 0.25);
-            transform: scale(1.05);
-        }
-
+        /* CARDS GALLERY */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
             border-radius: 25px;
             overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             animation: cardFadeIn 0.6s ease;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            position: relative;
         }
 
         .card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Indicateur cliquable sur les cartes */
+        .card::after {
+            content: '🔍';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.55);
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+        }
+
+        .card:hover::after {
+            opacity: 1;
         }
 
         .card-media-container {
             position: relative;
             width: 100%;
-            height: 240px;
+            height: 250px;
             overflow: hidden;
-            background: linear-gradient(135deg, #f5f7fa, #e9ecef);
         }
 
         .card-media {
@@ -694,13 +592,9 @@
             transition: opacity 0.3s ease;
         }
 
-        .card:hover .card-overlay {
-            opacity: 1;
-        }
+        .card:hover .card-overlay { opacity: 1; }
 
-        .card-content {
-            padding: 25px;
-        }
+        .card-content { padding: 25px; }
 
         .card-category {
             display: inline-flex;
@@ -721,19 +615,8 @@
             box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
         }
 
-        .card-title {
-            font-size: 21px;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .card-description {
-            font-size: 14px;
-            color: #718096;
-            line-height: 1.7;
-        }
+        .card-title { font-size: 21px; font-weight: 700; color: #2d3748; margin-bottom: 12px; line-height: 1.3; }
+        .card-description { font-size: 14px; color: #718096; line-height: 1.7; }
 
         .video-icon {
             position: absolute;
@@ -767,151 +650,408 @@
             border-radius: 25px;
         }
 
-        .empty-icon {
-            font-size: 90px;
-            margin-bottom: 25px;
-            opacity: 0.5;
-        }
+        .empty-icon { font-size: 90px; margin-bottom: 25px; opacity: 0.5; }
+        .empty-state h3 { font-size: 26px; margin-bottom: 12px; color: #2d3748; font-weight: 700; }
+        .empty-state p { color: #718096; font-size: 16px; }
 
-        .empty-state h3 {
-            font-size: 26px;
-            margin-bottom: 12px;
-            color: #2d3748;
-            font-weight: 700;
-        }
-
-        .empty-state p {
-            color: #718096;
-            font-size: 16px;
-        }
-
-        .admin-view {
-            display: none;
-        }
-
-        .admin-view.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
+        /* ===== ADMIN VIEW ===== */
+        .admin-view { display: none; }
+        .admin-view.active { display: block; animation: fadeIn 0.6s ease; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .flag {
-                width: 70px;
-                height: 50px;
-            }
-
-            .logo {
-                width: 170px;
-                height: 170px;
-            }
-
-            .logo-glow {
-                width: 190px;
-                height: 190px;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filter-container {
-                flex-direction: column;
-            }
-
-            .filter-btn {
-                width: 100%;
-            }
-
-            .admin-btn {
-                top: 15px;
-                right: 15px;
-                padding: 12px 24px;
-                font-size: 13px;
-            }
-
-            .music-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .info-section {
-                padding: 25px;
-            }
-
-            .service-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .horaires-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .zone-badge {
-                padding: 18px 30px;
-                font-size: 18px;
-            }
-
-            .zone-badge .flag-svg {
-                width: 48px;
-                height: 36px;
-            }
-
-            .contact-card {
-                min-width: 100%;
-                max-width: 100%;
-                padding: 40px 30px;
-            }
-
-            .contact-icon svg {
-                width: 70px;
-                height: 70px;
-            }
-
-            .contact-name {
-                font-size: 24px;
-            }
-
-            .contact-username {
-                font-size: 18px;
-            }
+        /* ===== PAGE LOGIN ADMIN ===== */
+        .admin-login-page {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px 0;
         }
-    
-        .admin-glass{background:rgba(0,0,0,0.42);border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:24px;padding:26px 20px;max-width:680px;margin:0 auto;}
-        .admin-glass-title{font-size:20px;font-weight:800;color:white;text-align:center;text-transform:uppercase;letter-spacing:1.5px;margin:0 0 18px;}
-        .admin-form{display:flex;flex-direction:column;gap:12px;}
-        .admin-input{width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.10);color:white;outline:none;font-family:'Poppins',sans-serif;font-size:15px;}
-        .admin-input::placeholder{color:rgba(255,255,255,0.5);}
-        .admin-input option{background:#2d1b55;color:white;}
-        .admin-submit{padding:14px;border:none;border-radius:14px;cursor:pointer;font-weight:800;font-size:15px;color:white;background:linear-gradient(135deg,#667eea,#764ba2);font-family:'Poppins',sans-serif;}
-        .admin-error{margin-top:10px;padding:12px;border-radius:14px;background:rgba(255,0,80,0.18);border:1px solid rgba(255,0,80,0.35);color:#ffd0dc;font-weight:700;text-align:center;}
-        .admin-actions{display:flex;gap:10px;justify-content:flex-end;margin:14px 0 6px;}
-        .admin-action{padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.10);color:white;cursor:pointer;font-weight:700;font-family:'Poppins',sans-serif;}
-        .admin-card-dash{margin-top:14px;padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.06);}
-        .admin-h3{margin:0 0 12px;font-size:16px;color:white;font-weight:700;}
-        .admin-hint{margin-top:8px;font-size:13px;color:rgba(255,255,255,0.7);}
-        .admin-media-list{display:flex;flex-direction:column;gap:10px;}
-        .admin-media-item{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.18);}
-        .admin-media-left{display:flex;flex-direction:column;gap:2px;min-width:0;}
-        .admin-media-name{font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-        .admin-media-meta{font-size:12px;color:rgba(255,255,255,0.65);}
-        .admin-delete{padding:8px 12px;border-radius:12px;border:1px solid rgba(255,0,80,0.35);background:rgba(255,0,80,0.18);color:#ffd0dc;cursor:pointer;font-weight:700;}
 
+        .login-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: cardFadeIn 0.5s ease;
+        }
+
+        .login-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .login-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 35px;
+        }
+
+        .login-form { display: flex; flex-direction: column; gap: 18px; }
+
+        .input-group {
+            position: relative;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: #2d3748;
+            background: #f7fafc;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .input-group .input-icon {
+            position: absolute;
+            right: 18px;
+            bottom: 16px;
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        .toggle-pw {
+            position: absolute;
+            right: 18px;
+            bottom: 16px;
+            font-size: 18px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .login-btn {
+            margin-top: 10px;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .login-btn:active { transform: translateY(0); }
+
+        .login-error {
+            display: none;
+            background: linear-gradient(135deg, rgba(245, 87, 108, 0.1), rgba(245, 87, 108, 0.2));
+            border: 2px solid rgba(245, 87, 108, 0.4);
+            color: #c53030;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* ===== ADMIN PANEL (après connexion) ===== */
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .admin-header-bar {
+            background: rgba(255,255,255,0.98);
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .admin-welcome {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .admin-welcome span {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logout-btn {
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.5);
+        }
+
+        .admin-form {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-form h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row { margin-bottom: 20px; }
+
+        .form-row label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-row input,
+        .form-row textarea,
+        .form-row select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #2d3748;
+            background: #f7fafc;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-row input:focus,
+        .form-row textarea:focus,
+        .form-row select:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .form-row textarea { resize: vertical; min-height: 100px; }
+
+        .submit-btn {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        /* ===== MODAL CARTE ===== */
+        .card-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .card-modal-overlay.open {
+            display: flex;
+        }
+
+        .card-modal {
+            background: white;
+            border-radius: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.15);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(245, 87, 108, 0.8);
+            transform: scale(1.1);
+        }
+
+        .modal-media {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .modal-body {
+            padding: 30px 35px 35px;
+        }
+
+        .modal-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #a8e063, #56ab2f);
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .modal-description {
+            font-size: 15px;
+            color: #718096;
+            line-height: 1.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .flag { width: 70px; height: 50px; }
+            .logo { width: 170px; height: 170px; }
+            .logo-glow { width: 190px; height: 190px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .filter-container { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .admin-btn { top: 15px; right: 15px; padding: 12px 24px; font-size: 13px; }
+            .music-btn { width: 50px; height: 50px; font-size: 20px; bottom: 20px; right: 20px; }
+            .info-section { padding: 25px; }
+            .service-cards { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .horaires-cards { grid-template-columns: 1fr; }
+            .zone-badge { padding: 18px 30px; font-size: 18px; }
+            .zone-badge .flag-svg { width: 48px; height: 36px; }
+            .contact-card { min-width: 100%; max-width: 100%; padding: 40px 30px; }
+            .login-card { padding: 35px 25px; }
+            .admin-form { padding: 25px; }
+            .modal-body { padding: 20px 22px 28px; }
+            .modal-title { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
-    <!-- DRAPEAUX FLOTTANTS -->
     <div class="floating-flags">
         <div class="flag usa"></div>
         <div class="flag nl"></div>
@@ -930,6 +1070,14 @@
         <source src="/music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- ===== MODAL CARTE ===== -->
+    <div class="card-modal-overlay" id="cardModal" onclick="closeModalOnBg(event)">
+        <div class="card-modal" id="cardModalInner">
+            <button class="modal-close" onclick="closeCardModal()">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
     <div class="content">
         <button class="admin-btn" id="adminToggle" onclick="toggleAdmin()">🔐 Admin</button>
 
@@ -941,6 +1089,7 @@
             <p class="header-title" id="headerTitle">MA GALERIE</p>
         </div>
 
+        <!-- GALLERY VIEW -->
         <div class="gallery-view" id="galleryView">
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="Article">📝 Article</button>
@@ -953,17 +1102,13 @@
             <!-- PAGE INFO -->
             <div class="info-page" id="infoPage" style="display: none;">
                 <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">📍</span> Nos Services
-                    </h2>
-
+                    <h2 class="info-title"><span class="icon">📍</span> Nos Services</h2>
                     <div class="service-cards">
                         <div class="service-card">
                             <div class="service-icon">📍</div>
                             <div class="service-name">Meet-Up</div>
                             <div class="service-desc">Plusieurs Meet-Up à votre disposition<br><br>En privé pour + d'informations...</div>
                         </div>
-
                         <div class="service-card">
                             <div class="service-icon">🚚</div>
                             <div class="service-name">Livraison</div>
@@ -973,45 +1118,23 @@
                 </div>
 
                 <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">⚡</span> Pourquoi nous choisir ?
-                    </h2>
-
+                    <h2 class="info-title"><span class="icon">⚡</span> Pourquoi nous choisir ?</h2>
                     <div class="features-grid">
-                        <div class="feature-box">
-                            <div class="feature-icon">🔒</div>
-                            <div class="feature-text">Discrétion<br>garantie</div>
-                        </div>
-
-                        <div class="feature-box">
-                            <div class="feature-icon">⚡</div>
-                            <div class="feature-text">Livraison<br>rapide</div>
-                        </div>
-
-                        <div class="feature-box">
-                            <div class="feature-icon">💎</div>
-                            <div class="feature-text">Qualité<br>premium</div>
-                        </div>
-
-                        <div class="feature-box">
-                            <div class="feature-icon">🎯</div>
-                            <div class="feature-text">Service<br>24/7</div>
-                        </div>
+                        <div class="feature-box"><div class="feature-icon">🔒</div><div class="feature-text">Discrétion<br>garantie</div></div>
+                        <div class="feature-box"><div class="feature-icon">⚡</div><div class="feature-text">Livraison<br>rapide</div></div>
+                        <div class="feature-box"><div class="feature-icon">💎</div><div class="feature-text">Qualité<br>premium</div></div>
+                        <div class="feature-box"><div class="feature-icon">🎯</div><div class="feature-text">Service<br>24/7</div></div>
                     </div>
                 </div>
 
                 <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">🕐</span> Horaires
-                    </h2>
-
+                    <h2 class="info-title"><span class="icon">🕐</span> Horaires</h2>
                     <div class="horaires-cards">
                         <div class="horaire-card">
                             <div class="horaire-icon">🚚</div>
                             <div class="horaire-label">Horaire livraisons</div>
                             <div class="horaire-time">13h - 00h</div>
                         </div>
-
                         <div class="horaire-card">
                             <div class="horaire-icon">📍</div>
                             <div class="horaire-label">Horaire sur place</div>
@@ -1021,106 +1144,119 @@
                 </div>
 
                 <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">📦</span> Pour un traitement rapide
-                    </h2>
-
+                    <h2 class="info-title"><span class="icon">📦</span> Pour un traitement rapide</h2>
                     <div class="payment-info">
-                        <div class="payment-item">
-                            <span class="payment-icon">✅</span>
-                            <span class="payment-text">Vérification d'identité (nouveaux clients)</span>
-                        </div>
-
-                        <div class="payment-item">
-                            <span class="payment-icon">💳</span>
-                            <span class="payment-text">Modes de paiement : <strong>CASH, BTC, Virement...</strong></span>
-                        </div>
+                        <div class="payment-item"><div class="payment-icon">✅</div><div class="payment-text">Vérification d'identité (nouveaux clients)</div></div>
+                        <div class="payment-item"><div class="payment-icon">💳</div><div class="payment-text">Modes de paiement :<br><strong>CASH, BTC, Virement...</strong></div></div>
                     </div>
                 </div>
 
                 <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">🗺️</span> Zones de livraison
-                    </h2>
-
+                    <h2 class="info-title"><span class="icon">🗺️</span> Zones de livraison</h2>
                     <div class="zones-list">
                         <div class="zone-badge france">
-                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-                                <rect width="300" height="600" fill="#002395"/>
-                                <rect x="300" width="300" height="600" fill="#FFFFFF"/>
-                                <rect x="600" width="300" height="600" fill="#ED2939"/>
-                            </svg>
-                            <span class="zone-text">59 / 62</span>
+                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"><rect width="300" height="600" fill="#002395"/><rect x="300" width="300" height="600" fill="#FFFFFF"/><rect x="600" width="300" height="600" fill="#ED2939"/></svg>
+                            59 / 62
                         </div>
-
                         <div class="zone-badge belgique">
-                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-                                <rect width="300" height="600" fill="#000000"/>
-                                <rect x="300" width="300" height="600" fill="#FDDA24"/>
-                                <rect x="600" width="300" height="600" fill="#EF3340"/>
-                            </svg>
-                            <span class="zone-text">Belgique 02 / 80</span>
+                            <svg class="flag-svg" width="60" height="45" viewBox="0 0 900 600" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);"><rect width="300" height="600" fill="#000000"/><rect x="300" width="300" height="600" fill="#FDDA24"/><rect x="600" width="300" height="600" fill="#EF3340"/></svg>
+                            Belgique 02 / 80
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- PAGE CONTACT -->
-            <div class="info-page" id="contactPage" style="display: none;">
-                <div class="info-section">
-                    <h2 class="info-title">
-                        <span class="icon">📞</span> Nous Contacter
-                    </h2>
-
-                    <div class="contact-cards">
-                        <a href="https://www.snapchat.com/add/sisi62259" target="_blank" class="contact-card">
-                            <div class="contact-icon">
-                                <svg width="80" height="80" viewBox="0 0 512 512" fill="currentColor">
-                                    <path d="M496.926,366.6c-3.373-9.176-9.8-14.086-17.112-18.153-1.376-.806-2.641-1.451-3.72-1.947-2.182-1.128-4.414-2.22-6.634-3.305-22.181-10.832-40.627-19.828-43.759-32.047a13.518,13.518,0,0,1,.255-8.128,74.407,74.407,0,0,0,5.069-18.166c15.118-1.3,24.145-9.53,26.816-24.456,1.806-10.081.165-18.693-4.613-24.205a26.158,26.158,0,0,0-6.994-5.458,68.226,68.226,0,0,0,.662-9.966c.018-2.964-.054-6.012-.217-9.053-.859-15.926-5.217-31.337-12.946-45.806C407.271,132.5,372.187,116.1,333.2,116.1h-1.958c-42.088-.239-77.237,17.07-104.545,51.477-7.728,14.469-12.087,29.88-12.946,45.807-.163,3.04-.235,6.088-.217,9.052a68.229,68.229,0,0,0,.662,9.967,26.162,26.162,0,0,0-6.995,5.458c-4.777,5.512-6.419,14.124-4.613,24.205,2.671,14.926,11.7,23.151,26.816,24.456a74.41,74.41,0,0,0,5.069,18.166,13.518,13.518,0,0,1,.255,8.128c-3.132,12.219-21.578,21.215-43.759,32.047-2.22,1.085-4.452,2.177-6.634,3.305-1.079.5-2.344,1.141-3.72,1.947-7.308,4.067-13.739,8.977-17.112,18.153-3.671,9.984-3.462,20.58.6,30.658,4.252,10.547,11.4,17.58,20.679,20.345,10.477,3.124,21.44,2.715,32.643-.126a151.446,151.446,0,0,0,33.542-11.556c3.1-1.495,6.1-2.965,9.028-4.428a83.762,83.762,0,0,1,10.131,16.021,66.678,66.678,0,0,0,18.4,21.267c11.535,8.329,25.462,12.551,41.4,12.551s29.862-4.222,41.4-12.551a66.668,66.668,0,0,0,18.4-21.267,83.746,83.746,0,0,1,10.131-16.021c2.928,1.463,5.929,2.933,9.028,4.428a151.461,151.461,0,0,0,33.542,11.556c11.2,2.841,22.166,3.25,32.643.126,9.276-2.765,16.427-9.8,20.679-20.345C500.388,387.176,500.6,376.58,496.926,366.6Z"/>
-                                </svg>
-                            </div>
-                            <div class="contact-name">Snapchat</div>
-                            <div class="contact-username">@sisi62259</div>
-                            <div class="contact-cta">👆 Cliquez pour nous ajouter</div>
-                        </a>
+            <div id="contactPage" style="display: none;">
+                <div class="info-page">
+                    <div class="info-section">
+                        <h2 class="info-title"><span class="icon">📞</span> Nous Contacter</h2>
+                        <div class="contact-cards">
+                            <a href="https://snapchat.com/add/sisi62259" target="_blank" class="contact-card">
+                                <div class="contact-icon">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="#000"><path d="M12.166 2C9.438 2 6.968 3.478 5.6 5.842c-.624 1.073-.93 2.303-.93 3.558v.408c-.398.181-.83.272-1.27.272-.44 0-.88-.091-1.307-.282l-.226-.1-.226.1c-.113.046-.226.091-.294.137-.136.09-.272.227-.272.408 0 .272.181.499.453.59.318.091 1.316.363 1.68.998.408.68-.34 1.996-.748 2.575-.068.09-.113.181-.113.272 0 .363.498.635 1.26.635.272 0 .589-.046.93-.137.453-.136.93-.386 1.452-.386.34 0 .68.09.998.272.52.295 1.09.635 1.996.907.5.136 1 .498 1.09 1.044.045.272-.046.544-.227.726-.408.408-.908.726-1.452.998-.204.09-.34.272-.34.498 0 .272.226.499.498.499.136 0 .272-.046.408-.091.68-.272 1.36-.476 2.076-.476.317 0 .635.045.93.136.091.023.204.046.317.046.136 0 .453-.068.68-.159.453-.204.93-.295 1.407-.295.68 0 1.36.136 2.008.408.136.068.272.113.408.113.272 0 .498-.227.498-.499 0-.226-.136-.408-.34-.498-.544-.272-1.044-.59-1.452-.998-.181-.181-.272-.454-.227-.726.09-.544.589-.907 1.09-1.044.907-.272 1.475-.612 1.996-.907.317-.181.657-.272.998-.272.52 0 .998.25 1.452.386.34.091.658.137.93.137.76 0 1.26-.272 1.26-.635 0-.091-.046-.181-.113-.272-.408-.58-1.156-1.896-.748-2.575.363-.635 1.362-.907 1.68-.998.272-.091.453-.317.453-.59 0-.181-.136-.317-.272-.408-.068-.046-.181-.09-.294-.136l-.226-.1-.226.1c-.43.19-.867.281-1.308.281-.44 0-.871-.09-1.27-.272v-.408c0-4.12-3.332-7.456-7.434-7.456z"/></svg>
+                                </div>
+                                <div class="contact-name">Snapchat</div>
+                                <div class="contact-username">@sisi62259</div>
+                                <div class="contact-cta">👆 Cliquez pour nous ajouter</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- ADMIN VIEW -->
         <div class="admin-view" id="adminView">
-            <div class="admin-glass">
-                <h2 class="admin-glass-title" id="adminTitle">🔐 CONNEXION ADMIN</h2>
-                <form id="adminLoginForm" class="admin-form">
-                    <input class="admin-input" id="adminUser" type="text" placeholder="Nom d'utilisateur" autocomplete="off" required>
-                    <input class="admin-input" id="adminPass" type="password" placeholder="Mot de passe" autocomplete="off" required>
-                    <button class="admin-submit" type="submit">Se connecter</button>
-                </form>
-                <div id="adminError" class="admin-error" style="display:none;"></div>
-                <div id="adminDashboard" style="display:none;">
-                    <div class="admin-actions">
-                        <button class="admin-action" id="adminRefreshBtn" type="button">↻ Rafraîchir</button>
-                        <button class="admin-action" id="adminLogoutBtn" type="button">🚪 Déconnexion</button>
+
+            <!-- LOGIN PAGE -->
+            <div class="admin-login-page" id="adminLoginPage">
+                <div class="login-card">
+                    <span class="login-icon">🔐</span>
+                    <h2 class="login-title">Panel Admin</h2>
+                    <p class="login-subtitle">Entrez vos identifiants pour accéder</p>
+
+                    <div class="login-form">
+                        <div class="input-group">
+                            <label>Nom d'utilisateur</label>
+                            <input type="text" id="adminUsername" placeholder="Entrez le nom d'utilisateur" autocomplete="off">
+                            <span class="input-icon">👤</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Mot de passe</label>
+                            <input type="password" id="adminPassword" placeholder="Entrez le mot de passe" autocomplete="off" onkeydown="if(event.key==='Enter') doLogin()">
+                            <button class="toggle-pw" onclick="togglePasswordVisibility()" title="Afficher/masquer">👁️</button>
+                        </div>
+
+                        <div class="login-error" id="loginError">❌ Identifiants incorrects, réessayez.</div>
+
+                        <button class="login-btn" onclick="doLogin()">🚀 Se connecter</button>
                     </div>
-                    <div class="admin-card-dash">
-                        <h3 class="admin-h3">📤 Ajouter un média</h3>
-                        <form id="adminUploadForm" class="admin-form" enctype="multipart/form-data">
-                            <input class="admin-input" id="mediaName" name="name" type="text" placeholder="Titre" required>
-                            <select class="admin-input" id="mediaCategory" name="category" required>
-                                <option value="Article">📝 Article</option>
-                                <option value="Info">ℹ️ Info</option>
-                                <option value="Contact">📞 Contact</option>
-                            </select>
-                            <textarea class="admin-input" id="mediaDesc" name="description" placeholder="Description (optionnel)" rows="3"></textarea>
-                            <input class="admin-input" id="mediaFile" name="file" type="file" accept="image/*,video/*" required>
-                            <button class="admin-submit" type="submit">Uploader</button>
-                        </form>
-                        <div id="uploadStatus" class="admin-hint"></div>
+                </div>
+            </div>
+
+            <!-- PANEL AFTER LOGIN -->
+            <div class="admin-panel" id="adminPanel">
+                <div class="admin-header-bar">
+                    <div class="admin-welcome">👋 Bienvenue, <span id="loggedUsername">Admin</span></div>
+                    <button class="logout-btn" onclick="doLogout()">🚪 Déconnexion</button>
+                </div>
+
+                <div class="admin-form">
+                    <h3>➕ Ajouter un média</h3>
+
+                    <div class="form-row">
+                        <label>Nom</label>
+                        <input type="text" id="mediaName" placeholder="Ex: Nouveau produit...">
                     </div>
-                    <div class="admin-card-dash">
-                        <h3 class="admin-h3">🗂️ Médias en ligne</h3>
-                        <div id="adminMediaList" class="admin-media-list"></div>
+
+                    <div class="form-row">
+                        <label>URL du média</label>
+                        <input type="url" id="mediaUrl" placeholder="https://...">
                     </div>
+
+                    <div class="form-row">
+                        <label>Type</label>
+                        <select id="mediaType">
+                            <option value="image">🖼️ Image</option>
+                            <option value="video">🎥 Vidéo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Catégorie</label>
+                        <select id="mediaCategory">
+                            <option value="Article">📝 Article</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Description (optionnel)</label>
+                        <textarea id="mediaDescription" placeholder="Description du contenu..."></textarea>
+                    </div>
+
+                    <button class="submit-btn" onclick="submitMedia()">✅ Ajouter le média</button>
                 </div>
             </div>
         </div>
@@ -1128,18 +1264,19 @@
 
     <script>
         let tg = window.Telegram?.WebApp;
-        if (tg) {
-            tg.expand();
-            tg.ready();
-        }
+        if (tg) { tg.expand(); tg.ready(); }
 
         let currentFilter = 'Article';
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
         let isMusicPlaying = false;
         let musicStarted = false;
+        let isAdminLoggedIn = false;
 
-        // AUTO-PLAY MUSIQUE AU PREMIER CLIC/TOUCH
+        // Identifiants admin (modifiez ici)
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "sisi6259";
+
         function startMusicOnInteraction() {
             if (!musicStarted) {
                 musicStarted = true;
@@ -1147,10 +1284,7 @@
                     musicBtn.textContent = '🔊';
                     musicBtn.classList.add('playing');
                     isMusicPlaying = true;
-                }).catch(err => {
-                    console.log('Musique non autorisée par le navigateur');
-                });
-
+                }).catch(() => {});
                 document.removeEventListener('click', startMusicOnInteraction);
                 document.removeEventListener('touchstart', startMusicOnInteraction);
             }
@@ -1161,14 +1295,13 @@
 
         function toggleMusic() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
-
             if (isMusicPlaying) {
                 bgMusic.pause();
                 musicBtn.textContent = '🎵';
                 musicBtn.classList.remove('playing');
                 isMusicPlaying = false;
             } else {
-                bgMusic.play().catch(err => console.log('Erreur musique'));
+                bgMusic.play().catch(() => {});
                 musicBtn.textContent = '🔊';
                 musicBtn.classList.add('playing');
                 isMusicPlaying = true;
@@ -1177,7 +1310,6 @@
 
         function toggleAdmin() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
-
             const adminView = document.getElementById('adminView');
             const galleryView = document.getElementById('galleryView');
             const adminBtn = document.getElementById('adminToggle');
@@ -1196,14 +1328,89 @@
                 adminBtn.textContent = '← Retour';
                 adminBtn.classList.add('active');
                 headerTitle.textContent = 'PANEL ADMIN';
-                resetAdminPanel();
+                // Affiche login ou panel selon l'état
+                if (isAdminLoggedIn) {
+                    document.getElementById('adminLoginPage').style.display = 'none';
+                    document.getElementById('adminPanel').classList.add('active');
+                } else {
+                    document.getElementById('adminLoginPage').style.display = 'block';
+                    document.getElementById('adminPanel').classList.remove('active');
+                }
             }
         }
 
+        function togglePasswordVisibility() {
+            const pw = document.getElementById('adminPassword');
+            pw.type = pw.type === 'password' ? 'text' : 'password';
+        }
+
+        function doLogin() {
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+            const username = document.getElementById('adminUsername').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            const errorEl = document.getElementById('loginError');
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                errorEl.style.display = 'none';
+                document.getElementById('loggedUsername').textContent = username;
+                document.getElementById('adminLoginPage').style.display = 'none';
+                document.getElementById('adminPanel').classList.add('active');
+                if (tg) tg.HapticFeedback.notificationOccurred('success');
+            } else {
+                errorEl.style.display = 'block';
+                errorEl.style.animation = 'none';
+                void errorEl.offsetWidth;
+                errorEl.style.animation = 'shake 0.4s ease';
+                if (tg) tg.HapticFeedback.notificationOccurred('error');
+            }
+        }
+
+        function doLogout() {
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+            isAdminLoggedIn = false;
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('adminPanel').classList.remove('active');
+            document.getElementById('adminLoginPage').style.display = 'block';
+        }
+
+        async function submitMedia() {
+            const name = document.getElementById('mediaName').value.trim();
+            const url = document.getElementById('mediaUrl').value.trim();
+            const type = document.getElementById('mediaType').value;
+            const category = document.getElementById('mediaCategory').value;
+            const description = document.getElementById('mediaDescription').value.trim();
+
+            if (!name || !url) {
+                alert('❌ Veuillez remplir le nom et l'URL.');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/media', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, url, type, category, description })
+                });
+                if (res.ok) {
+                    alert('✅ Média ajouté avec succès !');
+                    document.getElementById('mediaName').value = '';
+                    document.getElementById('mediaUrl').value = '';
+                    document.getElementById('mediaDescription').value = '';
+                } else {
+                    alert('❌ Erreur lors de l'ajout.');
+                }
+            } catch (e) {
+                alert('❌ Erreur réseau : ' + e.message);
+            }
+        }
+
+        // ===== FILTRES =====
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (tg) tg.HapticFeedback.impactOccurred('light');
-
                 const filter = this.getAttribute('data-filter');
                 currentFilter = filter;
 
@@ -1229,13 +1436,13 @@
             });
         });
 
+        // ===== GALERIE =====
         async function loadGallery() {
             try {
                 const response = await fetch('/api/media');
                 const data = await response.json();
                 renderGallery(data);
             } catch (error) {
-                console.error('Error loading gallery:', error);
                 document.getElementById('gallery').innerHTML = `
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
@@ -1261,12 +1468,12 @@
                 return;
             }
 
-            gallery.innerHTML = filtered.map(item => {
+            gallery.innerHTML = filtered.map((item, index) => {
                 const categoryClass = item.category.toLowerCase();
                 return `
-                <div class="card" onclick='openModal({url:item.url,name:item.name,type:item.type,description:item.description||"",category:item.category})' style="cursor:pointer;">
+                <div class="card" onclick="openCardModal(${index})" data-index="${index}">
                     <div class="card-media-container">
-                        ${item.type === 'video' 
+                        ${item.type === 'video'
                             ? `<video class="card-media" src="${item.url}" playsinline></video>
                                <div class="video-icon">▶️</div>`
                             : `<img class="card-media" src="${item.url}" alt="${item.name}">`
@@ -1279,159 +1486,58 @@
                         ${item.description ? `<p class="card-description">${item.description}</p>` : ''}
                     </div>
                 </div>
-            `}).join('');
+            `;
+            }).join('');
+
+            // Stocker les données pour le modal
+            window._galleryData = filtered;
         }
 
-        
-        // ===== MODALE =====
-        function openModal(item) {
-            var wrap = document.getElementById('modalMediaWrap');
-            document.getElementById('modalTitle').textContent = item.name || '';
-            document.getElementById('modalDesc').textContent = item.description || '';
-            document.getElementById('modalCategory').textContent = item.category || '';
-            if (item.type === 'video') {
-                wrap.innerHTML = '<video src="' + item.url + '" controls autoplay playsinline style="width:100%;max-height:60vh;object-fit:contain;"></video>';
-            } else {
-                wrap.innerHTML = '<img src="' + item.url + '" style="width:100%;max-height:60vh;object-fit:contain;">';
-            }
-            var modal = document.getElementById('mediaModal');
-            modal.style.display = 'flex';
+        // ===== MODAL =====
+        function openCardModal(index) {
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+            const item = window._galleryData[index];
+            if (!item) return;
+
+            const categoryClass = item.category.toLowerCase();
+            const mediaHTML = item.type === 'video'
+                ? `<video class="modal-media" src="${item.url}" controls autoplay playsinline></video>`
+                : `<img class="modal-media" src="${item.url}" alt="${item.name}">`;
+
+            document.getElementById('modalContent').innerHTML = `
+                ${mediaHTML}
+                <div class="modal-body">
+                    <div class="modal-category ${categoryClass}">${item.category}</div>
+                    <h2 class="modal-title">${item.name}</h2>
+                    ${item.description ? `<p class="modal-description">${item.description}</p>` : ''}
+                </div>
+            `;
+
+            document.getElementById('cardModal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('mediaModal').style.display = 'none';
-            document.getElementById('modalMediaWrap').innerHTML = '';
+        function closeCardModal() {
+            document.getElementById('cardModal').classList.remove('open');
             document.body.style.overflow = '';
+            // Stop video if any
+            const video = document.querySelector('#modalContent video');
+            if (video) video.pause();
         }
 
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-        // ===== ADMIN (login toujours obligatoire) =====
-        var adminToken = null;
-
-        function setAdminError(msg) {
-            var box = document.getElementById('adminError');
-            if (!box) return;
-            box.textContent = msg || '';
-            box.style.display = msg ? 'block' : 'none';
-        }
-
-        function showDashboard(show) {
-            var form = document.getElementById('adminLoginForm');
-            var dash = document.getElementById('adminDashboard');
-            var title = document.getElementById('adminTitle');
-            if (show) {
-                if (form) form.style.display = 'none';
-                if (dash) dash.style.display = 'block';
-                if (title) title.textContent = '✅ Admin connecté';
-            } else {
-                if (form) form.style.display = 'flex';
-                if (dash) dash.style.display = 'none';
-                if (title) title.textContent = '🔐 CONNEXION ADMIN';
+        function closeModalOnBg(event) {
+            if (event.target === document.getElementById('cardModal')) {
+                closeCardModal();
             }
         }
 
-        function resetAdminPanel() {
-            adminToken = null;
-            setAdminError('');
-            showDashboard(false);
-            var u = document.getElementById('adminUser');
-            var p = document.getElementById('adminPass');
-            if (u) u.value = '';
-            if (p) p.value = '';
-        }
+        // Fermer avec Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCardModal();
+        });
 
-        async function refreshAdminMediaList() {
-            var list = document.getElementById('adminMediaList');
-            if (!list) return;
-            list.innerHTML = '<div class="admin-hint">Chargement...</div>';
-            try {
-                var res = await fetch('/api/media');
-                var items = await res.json();
-                if (!Array.isArray(items) || items.length === 0) {
-                    list.innerHTML = '<div class="admin-hint">Aucun média.</div>';
-                    return;
-                }
-                list.innerHTML = items.map(function(item) {
-                    return '<div class="admin-media-item"><div class="admin-media-left"><div class="admin-media-name">' + (item.name||'Sans titre') + '</div><div class="admin-media-meta">' + (item.category||'') + ' • ' + (item.type||'') + '</div></div><button class="admin-delete" onclick="adminDeleteMedia('' + item.id + '')">🗑️ Suppr.</button></div>';
-                }).join('');
-            } catch(e) { list.innerHTML = '<div class="admin-hint">Erreur.</div>'; }
-        }
-
-        async function adminDeleteMedia(id) {
-            if (!adminToken || !confirm('Supprimer ce média ?')) return;
-            try {
-                var res = await fetch('/api/admin/media/' + id, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + adminToken } });
-                if (!res.ok) { alert('Erreur suppression'); return; }
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch(e) { alert('Erreur réseau'); }
-        }
-
-        async function adminLogin(e) {
-            e.preventDefault();
-            setAdminError('');
-            var username = document.getElementById('adminUser').value.trim();
-            var password = document.getElementById('adminPass').value;
-            if (!username || !password) return;
-            try {
-                var res = await fetch('/api/admin/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: username, password: password })
-                });
-                var data = await res.json().catch(function(){ return {}; });
-                if (!res.ok) { setAdminError(data.error || 'Identifiants incorrects'); return; }
-                adminToken = data.token;
-                showDashboard(true);
-                await refreshAdminMediaList();
-            } catch(err) { setAdminError('Erreur serveur'); }
-        }
-
-        async function adminUpload(e) {
-            e.preventDefault();
-            if (!adminToken) return;
-            var status = document.getElementById('uploadStatus');
-            var file = document.getElementById('mediaFile').files[0];
-            if (!file) return;
-            var fd = new FormData();
-            fd.append('name', document.getElementById('mediaName').value);
-            fd.append('category', document.getElementById('mediaCategory').value);
-            fd.append('description', document.getElementById('mediaDesc').value);
-            fd.append('file', file);
-            if (status) status.textContent = 'Upload en cours...';
-            try {
-                var res = await fetch('/api/admin/upload', { method: 'POST', headers: { 'Authorization': 'Bearer ' + adminToken }, body: fd });
-                var data = await res.json().catch(function(){ return {}; });
-                if (!res.ok) { if (status) status.textContent = data.error || 'Erreur'; return; }
-                if (status) status.textContent = '✅ Uploadé !';
-                document.getElementById('adminUploadForm').reset();
-                await refreshAdminMediaList();
-                await loadGallery();
-            } catch(e) { if (status) status.textContent = 'Erreur réseau'; }
-        }
-
-        document.getElementById('adminLoginForm').addEventListener('submit', adminLogin);
-        document.getElementById('adminUploadForm').addEventListener('submit', adminUpload);
-        document.getElementById('adminLogoutBtn').addEventListener('click', function(){ adminToken=null; setAdminError(''); showDashboard(false); });
-        document.getElementById('adminRefreshBtn').addEventListener('click', refreshAdminMediaList);
-
-loadGallery();
+        loadGallery();
         setInterval(loadGallery, 30000);
     </script>
-
-    <div id="mediaModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:16px;" onclick="if(event.target===this)closeModal()">
-        <div style="position:relative;background:rgba(20,10,40,0.98);border-radius:22px;max-width:680px;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 20px 80px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.1);">
-            <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.15);border:none;color:white;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:10;">✕</button>
-            <div id="modalMediaWrap" style="width:100%;max-height:60vh;border-radius:22px 22px 0 0;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden;"></div>
-            <div style="padding:18px 20px 22px;">
-                <div id="modalCategory" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a78bfa;margin-bottom:6px;"></div>
-                <h2 id="modalTitle" style="font-size:20px;font-weight:800;color:white;margin:0 0 8px;"></h2>
-                <p id="modalDesc" style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0;"></p>
-            </div>
-        </div>
-    </div>
-
 </body>
 </html>
