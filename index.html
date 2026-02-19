@@ -890,168 +890,96 @@
 
         /* ===== LOGIN ADMIN ===== */
         .admin-login-page { max-width: 450px; margin: 0 auto; padding: 20px 0; }
-        .login-card {
-            background: rgba(255,255,255,0.98);
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            text-align: center;
-        }
+        .login-card { background: rgba(255,255,255,0.98); border-radius: 30px; padding: 50px 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); text-align: center; }
         .login-icon { font-size: 64px; margin-bottom: 20px; display: block; }
         .login-title { font-size: 26px; font-weight: 800; color: #2d3748; margin-bottom: 8px; }
         .login-subtitle { font-size: 14px; color: #718096; margin-bottom: 35px; }
         .login-form { display: flex; flex-direction: column; gap: 18px; }
         .input-group { position: relative; text-align: left; }
-        .input-group label {
-            display: block; font-size: 13px; font-weight: 600;
-            color: #4a5568; margin-bottom: 8px;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .input-group input {
-            width: 100%; padding: 16px 52px 16px 20px;
-            border: 2px solid #e2e8f0; border-radius: 15px;
-            font-family: 'Poppins', sans-serif; font-size: 15px;
-            color: #2d3748; background: #f7fafc; outline: none;
-            transition: all 0.3s ease;
-        }
-        .input-group input:focus {
-            border-color: #667eea; background: white;
-            box-shadow: 0 0 0 4px rgba(102,126,234,0.15);
-        }
+        .input-group label { display: block; font-size: 13px; font-weight: 600; color: #4a5568; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .input-group input { width: 100%; padding: 16px 52px 16px 20px; border: 2px solid #e2e8f0; border-radius: 15px; font-family: 'Poppins', sans-serif; font-size: 15px; color: #2d3748; background: #f7fafc; outline: none; transition: all 0.3s ease; }
+        .input-group input:focus { border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102,126,234,0.15); }
         .input-icon { position: absolute; right: 18px; bottom: 18px; font-size: 18px; pointer-events: none; }
-        .toggle-pw {
-            position: absolute; right: 18px; bottom: 16px;
-            font-size: 18px; cursor: pointer;
-            background: none; border: none; padding: 0; line-height: 1;
-        }
-        .login-btn {
-            margin-top: 5px; padding: 18px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none; border-radius: 15px;
-            color: white; font-family: 'Poppins', sans-serif;
-            font-size: 16px; font-weight: 700; cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(102,126,234,0.4);
-        }
+        .toggle-pw { position: absolute; right: 18px; bottom: 16px; font-size: 18px; cursor: pointer; background: none; border: none; padding: 0; line-height: 1; }
+        .login-btn { margin-top: 5px; padding: 18px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 15px; color: white; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
         .login-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(102,126,234,0.6); }
-        .login-error {
-            display: none;
-            background: rgba(245,87,108,0.12);
-            border: 2px solid rgba(245,87,108,0.4);
-            color: #c53030; border-radius: 12px;
-            padding: 14px 18px; font-size: 14px; font-weight: 500;
-            animation: shake 0.4s ease;
-        }
-        @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            20%,60%  { transform: translateX(-8px); }
-            40%,80%  { transform: translateX(8px); }
-        }
-        /* ===== PANEL APRÈS CONNEXION ===== */
+        .login-error { display: none; background: rgba(245,87,108,0.12); border: 2px solid rgba(245,87,108,0.4); color: #c53030; border-radius: 12px; padding: 14px 18px; font-size: 14px; font-weight: 500; animation: shake 0.4s ease; }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
+
+        /* ===== PANEL ADMIN ===== */
         .admin-panel { display: none; }
         .admin-panel.active { display: block; animation: fadeIn 0.5s ease; }
-        .admin-header-bar {
-            background: rgba(255,255,255,0.98);
-            border-radius: 20px; padding: 20px 30px;
-            margin-bottom: 25px; display: flex;
-            align-items: center; justify-content: space-between;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
+        .admin-header-bar { background: rgba(255,255,255,0.98); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .admin-welcome { font-size: 18px; font-weight: 700; color: #2d3748; }
-        .admin-welcome span {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .logout-btn {
-            padding: 10px 22px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            border: none; border-radius: 50px;
-            color: white; font-family: 'Poppins', sans-serif;
-            font-size: 13px; font-weight: 600; cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(245,87,108,0.3);
-        }
+        .admin-welcome span { background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .logout-btn { padding: 10px 22px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(245,87,108,0.3); }
         .logout-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,87,108,0.5); }
-        .admin-form {
-            background: rgba(255,255,255,0.98); border-radius: 25px;
-            padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
+        .admin-form { background: rgba(255,255,255,0.98); border-radius: 25px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 25px; }
         .admin-form h3 { font-size: 22px; font-weight: 700; color: #2d3748; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
         .form-row { margin-bottom: 20px; }
         .form-row label { display: block; font-size: 13px; font-weight: 600; color: #4a5568; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .form-row input, .form-row textarea, .form-row select {
-            width: 100%; padding: 14px 18px;
-            border: 2px solid #e2e8f0; border-radius: 12px;
-            font-family: 'Poppins', sans-serif; font-size: 14px;
-            color: #2d3748; background: #f7fafc; outline: none;
-            transition: all 0.3s ease;
+        .form-row input[type="text"], .form-row textarea, .form-row select { width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 14px; color: #2d3748; background: #f7fafc; outline: none; transition: all 0.3s ease; }
+        .form-row input[type="text"]:focus, .form-row textarea:focus, .form-row select:focus { border-color: #667eea; background: white; box-shadow: 0 0 0 4px rgba(102,126,234,0.15); }
+        .form-row textarea { resize: vertical; min-height: 90px; }
+
+        /* Upload zone */
+        .upload-zone {
+            border: 3px dashed #cbd5e0; border-radius: 20px;
+            padding: 40px 20px; text-align: center; cursor: pointer;
+            transition: all 0.3s ease; background: #f7fafc;
+            position: relative;
         }
-        .form-row input:focus, .form-row textarea:focus, .form-row select:focus {
-            border-color: #667eea; background: white;
-            box-shadow: 0 0 0 4px rgba(102,126,234,0.15);
-        }
-        .form-row textarea { resize: vertical; min-height: 100px; }
-        .submit-btn {
-            padding: 16px 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none; border-radius: 15px;
-            color: white; font-family: 'Poppins', sans-serif;
-            font-size: 15px; font-weight: 700; cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(102,126,234,0.4);
-            width: 100%; margin-top: 10px;
-        }
+        .upload-zone:hover, .upload-zone.dragover { border-color: #667eea; background: rgba(102,126,234,0.05); }
+        .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .upload-icon { font-size: 48px; margin-bottom: 12px; }
+        .upload-text { font-size: 15px; font-weight: 600; color: #4a5568; margin-bottom: 6px; }
+        .upload-sub { font-size: 13px; color: #a0aec0; }
+        .upload-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .upload-tab { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f7fafc; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: #718096; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .upload-tab.active { border-color: #667eea; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+
+        /* Preview */
+        .media-preview { display: none; margin-top: 15px; border-radius: 15px; overflow: hidden; max-height: 280px; position: relative; background: #000; }
+        .media-preview.show { display: block; }
+        .media-preview img, .media-preview video { width: 100%; max-height: 280px; object-fit: contain; display: block; }
+        .preview-remove { position: absolute; top: 10px; right: 10px; background: rgba(245,87,108,0.85); border: none; border-radius: 50%; width: 32px; height: 32px; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+        /* Galerie admin (cartes existantes) */
+        .admin-gallery { background: rgba(255,255,255,0.98); border-radius: 25px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .admin-gallery h3 { font-size: 22px; font-weight: 700; color: #2d3748; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .admin-cards-list { display: flex; flex-direction: column; gap: 15px; }
+        .admin-card-item { display: flex; align-items: center; gap: 18px; background: #f7fafc; border-radius: 15px; padding: 15px 20px; border: 2px solid #e2e8f0; transition: all 0.3s ease; }
+        .admin-card-item:hover { border-color: #667eea; }
+        .admin-card-thumb { width: 70px; height: 55px; border-radius: 10px; object-fit: cover; flex-shrink: 0; background: #edf2f7; }
+        .admin-card-info { flex: 1; min-width: 0; }
+        .admin-card-name { font-size: 15px; font-weight: 700; color: #2d3748; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .admin-card-cat { font-size: 12px; color: #718096; }
+        .delete-btn { padding: 8px 16px; background: linear-gradient(135deg, #f093fb, #f5576c); border: none; border-radius: 50px; color: white; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
+        .delete-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
+
+        .submit-btn { padding: 16px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 15px; color: white; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(102,126,234,0.4); width: 100%; margin-top: 10px; }
         .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(102,126,234,0.6); }
 
         /* ===== MODAL CARTE ===== */
         .card { cursor: pointer; }
-        .card-modal-overlay {
-            display: none;
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 9999;
-            align-items: center; justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(8px);
-        }
+        .card-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
         .card-modal-overlay.open { display: flex; }
-        .card-modal {
-            background: white; border-radius: 30px;
-            max-width: 620px; width: 100%;
-            max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-            animation: modalPop 0.35s cubic-bezier(0.34,1.56,0.64,1);
-            position: relative;
-        }
-        @keyframes modalPop {
-            from { transform: scale(0.75); opacity: 0; }
-            to   { transform: scale(1); opacity: 1; }
-        }
-        .modal-close {
-            position: absolute; top: 14px; right: 14px;
-            width: 38px; height: 38px;
-            background: rgba(0,0,0,0.4); border: none;
-            border-radius: 50%; color: white; font-size: 18px;
-            cursor: pointer; z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s ease;
-        }
+        .card-modal { background: white; border-radius: 30px; max-width: 640px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.4); animation: modalPop 0.35s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+        @keyframes modalPop { from { transform: scale(0.75); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; background: rgba(0,0,0,0.45); border: none; border-radius: 50%; color: white; font-size: 18px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
         .modal-close:hover { background: rgba(245,87,108,0.85); transform: scale(1.1); }
-        .modal-media { width: 100%; max-height: 380px; object-fit: cover; border-radius: 30px 30px 0 0; display: block; }
+        .modal-media { width: 100%; max-height: 400px; object-fit: cover; border-radius: 30px 30px 0 0; display: block; }
         .modal-body { padding: 28px 32px 34px; }
-        .modal-category {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 8px 18px; border-radius: 50px;
-            font-size: 13px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            margin-bottom: 14px;
-            background: linear-gradient(135deg, #a8e063, #56ab2f);
-            color: white;
-        }
+        .modal-category { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; background: linear-gradient(135deg, #a8e063, #56ab2f); color: white; }
         .modal-title { font-size: 24px; font-weight: 800; color: #2d3748; margin-bottom: 12px; line-height: 1.3; }
         .modal-desc { font-size: 15px; color: #718096; line-height: 1.8; }
+
+        @media (max-width: 768px) {
+            .upload-tabs { flex-direction: column; }
+            .admin-form { padding: 25px; }
+            .admin-gallery { padding: 25px; }
+            .modal-body { padding: 20px 22px 28px; }
+        }
 
     </style>
 </head>
@@ -1079,7 +1007,7 @@
         
     <!-- MODALE CARTE -->
     <div class="card-modal-overlay" id="cardModal" onclick="closeModalBg(event)">
-        <div class="card-modal" id="cardModalInner">
+        <div class="card-modal">
             <button class="modal-close" onclick="closeCardModal()">✕</button>
             <div id="modalContent"></div>
         </div>
@@ -1242,13 +1170,14 @@
             </div>
         </div>
 
-        <div class="admin-view" id="adminView">
-            <!-- LOGIN PAGE -->
+                <div class="admin-view" id="adminView">
+
+            <!-- PAGE LOGIN -->
             <div class="admin-login-page" id="adminLoginPage">
                 <div class="login-card">
                     <span class="login-icon">🔐</span>
                     <h2 class="login-title">Panel Admin</h2>
-                    <p class="login-subtitle">Entrez vos identifiants pour accéder</p>
+                    <p class="login-subtitle">Entrez vos identifiants pour continuer</p>
                     <div class="login-form">
                         <div class="input-group">
                             <label>Nom d'utilisateur</label>
@@ -1266,40 +1195,75 @@
                     </div>
                 </div>
             </div>
+
             <!-- PANEL APRÈS CONNEXION -->
             <div class="admin-panel" id="adminPanel">
                 <div class="admin-header-bar">
                     <div class="admin-welcome">👋 Bienvenue, <span id="loggedUser">Admin</span></div>
                     <button class="logout-btn" onclick="doLogout()">🚪 Déconnexion</button>
                 </div>
+
+                <!-- FORMULAIRE AJOUT -->
                 <div class="admin-form">
                     <h3>➕ Ajouter un média</h3>
-                    <div class="form-row">
-                        <label>Nom</label>
-                        <input type="text" id="mediaName" placeholder="Ex: Nouveau produit...">
+
+                    <!-- Tabs : Fichier ou URL -->
+                    <div class="upload-tabs">
+                        <div class="upload-tab active" id="tabFile" onclick="switchTab('file')">📁 Depuis mon téléphone</div>
+                        <div class="upload-tab" id="tabUrl" onclick="switchTab('url')">🔗 Depuis une URL</div>
                     </div>
-                    <div class="form-row">
-                        <label>URL du média</label>
-                        <input type="url" id="mediaUrl" placeholder="https://...">
+
+                    <!-- Zone upload fichier -->
+                    <div id="sectionFile">
+                        <div class="upload-zone" id="uploadZone"
+                            ondragover="event.preventDefault();this.classList.add('dragover')"
+                            ondragleave="this.classList.remove('dragover')"
+                            ondrop="handleDrop(event)">
+                            <input type="file" id="fileInput" accept="image/*,video/*" onchange="handleFileSelect(event)">
+                            <div class="upload-icon">📸</div>
+                            <div class="upload-text">Appuyez pour choisir une photo ou vidéo</div>
+                            <div class="upload-sub">JPG, PNG, GIF, MP4, MOV acceptés</div>
+                        </div>
+                        <div class="media-preview" id="mediaPreview">
+                            <button class="preview-remove" onclick="removeFile()">✕</button>
+                            <img id="previewImg" src="" alt="" style="display:none">
+                            <video id="previewVid" src="" controls playsinline style="display:none"></video>
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <label>Type</label>
-                        <select id="mediaType">
-                            <option value="image">🖼️ Image</option>
-                            <option value="video">🎥 Vidéo</option>
-                        </select>
+
+                    <!-- Zone URL -->
+                    <div id="sectionUrl" style="display:none">
+                        <div class="form-row" style="margin-bottom:0">
+                            <label>URL de l'image ou vidéo</label>
+                            <input type="text" id="mediaUrl" placeholder="https://exemple.com/photo.jpg">
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <label>Catégorie</label>
-                        <select id="mediaCategory">
-                            <option value="Article">📝 Article</option>
-                        </select>
+
+                    <div style="margin-top:20px">
+                        <div class="form-row">
+                            <label>Nom</label>
+                            <input type="text" id="mediaName" placeholder="Ex: Arrivage du jour...">
+                        </div>
+                        <div class="form-row">
+                            <label>Catégorie</label>
+                            <select id="mediaCategory">
+                                <option value="Article">📝 Article</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label>Description (optionnel)</label>
+                            <textarea id="mediaDescription" placeholder="Description..."></textarea>
+                        </div>
+                        <button class="submit-btn" onclick="submitMedia()">✅ Publier dans la galerie</button>
                     </div>
-                    <div class="form-row">
-                        <label>Description (optionnel)</label>
-                        <textarea id="mediaDescription" placeholder="Description..."></textarea>
+                </div>
+
+                <!-- LISTE DES CARTES EXISTANTES -->
+                <div class="admin-gallery">
+                    <h3>🗂️ Cartes publiées</h3>
+                    <div class="admin-cards-list" id="adminCardsList">
+                        <p style="color:#718096;text-align:center;padding:20px">Aucune carte publiée</p>
                     </div>
-                    <button class="submit-btn" onclick="submitMedia()">✅ Ajouter le média</button>
                 </div>
             </div>
         </div>
@@ -1312,11 +1276,10 @@
         let currentFilter = 'Article';
         const bgMusic = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
-        let isMusicPlaying = false;
-        let musicStarted = false;
-        let isAdminLoggedIn = false;
+        let isMusicPlaying = false, musicStarted = false, isAdminLoggedIn = false;
+        let currentTab = 'file';
+        let selectedFileData = null; // { dataUrl, type }
 
-        // ─── Identifiants admin (modifiez ici) ───
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "sisi6259";
 
@@ -1324,11 +1287,7 @@
         function startMusicOnInteraction() {
             if (!musicStarted) {
                 musicStarted = true;
-                bgMusic.play().then(() => {
-                    musicBtn.textContent = '🔊';
-                    musicBtn.classList.add('playing');
-                    isMusicPlaying = true;
-                }).catch(() => {});
+                bgMusic.play().then(() => { musicBtn.textContent='🔊'; musicBtn.classList.add('playing'); isMusicPlaying=true; }).catch(()=>{});
                 document.removeEventListener('click', startMusicOnInteraction);
                 document.removeEventListener('touchstart', startMusicOnInteraction);
             }
@@ -1338,27 +1297,17 @@
 
         function toggleMusic() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicBtn.textContent = '🎵';
-                musicBtn.classList.remove('playing');
-                isMusicPlaying = false;
-            } else {
-                bgMusic.play().catch(() => {});
-                musicBtn.textContent = '🔊';
-                musicBtn.classList.add('playing');
-                isMusicPlaying = true;
-            }
+            if (isMusicPlaying) { bgMusic.pause(); musicBtn.textContent='🎵'; musicBtn.classList.remove('playing'); isMusicPlaying=false; }
+            else { bgMusic.play().catch(()=>{}); musicBtn.textContent='🔊'; musicBtn.classList.add('playing'); isMusicPlaying=true; }
         }
 
         // ─── Admin toggle ───
         function toggleAdmin() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
-            const adminView = document.getElementById('adminView');
+            const adminView   = document.getElementById('adminView');
             const galleryView = document.getElementById('galleryView');
-            const adminBtn = document.getElementById('adminToggle');
+            const adminBtn    = document.getElementById('adminToggle');
             const headerTitle = document.getElementById('headerTitle');
-
             if (adminView.classList.contains('active')) {
                 adminView.classList.remove('active');
                 galleryView.classList.remove('hidden');
@@ -1387,7 +1336,6 @@
             const pw = document.getElementById('adminPassword');
             pw.type = pw.type === 'password' ? 'text' : 'password';
         }
-
         function doLogin() {
             if (tg) tg.HapticFeedback.impactOccurred('medium');
             const u = document.getElementById('adminUsername').value.trim();
@@ -1399,16 +1347,14 @@
                 document.getElementById('loggedUser').textContent = u;
                 document.getElementById('adminLoginPage').style.display = 'none';
                 document.getElementById('adminPanel').classList.add('active');
+                loadAdminCards();
                 if (tg) tg.HapticFeedback.notificationOccurred('success');
             } else {
                 err.style.display = 'block';
-                err.style.animation = 'none';
-                void err.offsetWidth;
-                err.style.animation = 'shake 0.4s ease';
+                err.style.animation = 'none'; void err.offsetWidth; err.style.animation = 'shake 0.4s ease';
                 if (tg) tg.HapticFeedback.notificationOccurred('error');
             }
         }
-
         function doLogout() {
             isAdminLoggedIn = false;
             document.getElementById('adminUsername').value = '';
@@ -1418,29 +1364,144 @@
             document.getElementById('adminLoginPage').style.display = 'block';
         }
 
+        // ─── Onglets upload ───
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tabFile').classList.toggle('active', tab === 'file');
+            document.getElementById('tabUrl').classList.toggle('active', tab === 'url');
+            document.getElementById('sectionFile').style.display = tab === 'file' ? 'block' : 'none';
+            document.getElementById('sectionUrl').style.display  = tab === 'url'  ? 'block' : 'none';
+        }
+
+        // ─── Sélection fichier ───
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) processFile(file);
+        }
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadZone').classList.remove('dragover');
+            const file = event.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+        function processFile(file) {
+            const isVideo = file.type.startsWith('video/');
+            const isImage = file.type.startsWith('image/');
+            if (!isVideo && !isImage) { alert('❌ Format non supporté. Utilisez une image ou vidéo.'); return; }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedFileData = { dataUrl: e.target.result, type: isVideo ? 'video' : 'image', mimeType: file.type, fileName: file.name };
+                showPreview(e.target.result, isVideo);
+            };
+            reader.readAsDataURL(file);
+        }
+        function showPreview(src, isVideo) {
+            const preview = document.getElementById('mediaPreview');
+            const img = document.getElementById('previewImg');
+            const vid = document.getElementById('previewVid');
+            preview.classList.add('show');
+            if (isVideo) { vid.src = src; vid.style.display = 'block'; img.style.display = 'none'; }
+            else { img.src = src; img.style.display = 'block'; vid.style.display = 'none'; }
+        }
+        function removeFile() {
+            selectedFileData = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('mediaPreview').classList.remove('show');
+            document.getElementById('previewImg').src = '';
+            document.getElementById('previewVid').src = '';
+        }
+
+        // ─── Soumettre le média ───
         async function submitMedia() {
-            const name = document.getElementById('mediaName').value.trim();
-            const url  = document.getElementById('mediaUrl').value.trim();
-            const type = document.getElementById('mediaType').value;
-            const category = document.getElementById('mediaCategory').value;
+            if (tg) tg.HapticFeedback.impactOccurred('medium');
+            const name        = document.getElementById('mediaName').value.trim();
+            const category    = document.getElementById('mediaCategory').value;
             const description = document.getElementById('mediaDescription').value.trim();
-            if (!name || !url) { alert("❌ Nom et URL obligatoires."); return; }
+
+            if (!name) { alert('❌ Le nom est obligatoire.'); return; }
+
+            let mediaUrl  = '';
+            let mediaType = 'image';
+
+            if (currentTab === 'file') {
+                if (!selectedFileData) { alert('❌ Choisissez un fichier.'); return; }
+                // Upload du fichier en base64 vers le serveur
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ data: selectedFileData.dataUrl, mimeType: selectedFileData.mimeType, fileName: selectedFileData.fileName })
+                    });
+                    if (!res.ok) throw new Error('Upload échoué');
+                    const json = await res.json();
+                    mediaUrl  = json.url;
+                    mediaType = selectedFileData.type;
+                } catch(e) {
+                    // Fallback : utiliser le dataUrl directement si pas d'endpoint upload
+                    mediaUrl  = selectedFileData.dataUrl;
+                    mediaType = selectedFileData.type;
+                }
+            } else {
+                mediaUrl = document.getElementById('mediaUrl').value.trim();
+                if (!mediaUrl) { alert('❌ Entrez une URL.'); return; }
+                mediaType = /\.(mp4|mov|webm|avi)$/i.test(mediaUrl) ? 'video' : 'image';
+            }
+
             try {
                 const res = await fetch('/api/media', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, url, type, category, description })
+                    body: JSON.stringify({ name, url: mediaUrl, type: mediaType, category, description })
                 });
                 if (res.ok) {
-                    alert('✅ Média ajouté !');
+                    if (tg) tg.HapticFeedback.notificationOccurred('success');
+                    alert('✅ Publié dans la galerie !');
                     document.getElementById('mediaName').value = '';
-                    document.getElementById('mediaUrl').value = '';
                     document.getElementById('mediaDescription').value = '';
-                } else { alert('❌ Erreur lors de l\'ajout.'); }
+                    document.getElementById('mediaUrl').value = '';
+                    removeFile();
+                    loadAdminCards();
+                } else { alert('❌ Erreur lors de la publication.'); }
             } catch(e) { alert('❌ Erreur réseau : ' + e.message); }
         }
 
-        // ─── Filtres ───
+        // ─── Liste cartes admin ───
+        async function loadAdminCards() {
+            try {
+                const res  = await fetch('/api/media');
+                const data = await res.json();
+                renderAdminCards(data);
+            } catch(e) { console.log('Erreur chargement cartes admin'); }
+        }
+
+        function renderAdminCards(media) {
+            const list = document.getElementById('adminCardsList');
+            if (!media.length) { list.innerHTML = '<p style="color:#718096;text-align:center;padding:20px">Aucune carte publiée</p>'; return; }
+            list.innerHTML = media.map((item, i) => {
+                const thumb = item.type === 'video'
+                    ? `<div class="admin-card-thumb" style="display:flex;align-items:center;justify-content:center;font-size:26px;background:#edf2f7;">🎥</div>`
+                    : `<img class="admin-card-thumb" src="${item.url}" onerror="this.style.background='#edf2f7'">`;
+                return `<div class="admin-card-item">
+                    ${thumb}
+                    <div class="admin-card-info">
+                        <div class="admin-card-name">${item.name}</div>
+                        <div class="admin-card-cat">${item.category} · ${item.type}</div>
+                    </div>
+                    <button class="delete-btn" onclick="deleteCard('${item.id || i}')">🗑️ Supprimer</button>
+                </div>`;
+            }).join('');
+        }
+
+        async function deleteCard(id) {
+            if (!confirm('Supprimer cette carte ?')) return;
+            try {
+                const res = await fetch('/api/media/' + id, { method: 'DELETE' });
+                if (res.ok) { loadAdminCards(); loadGallery(); }
+                else alert('❌ Impossible de supprimer.');
+            } catch(e) { alert('❌ Erreur réseau.'); }
+        }
+
+        // ─── Filtres galerie ───
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (tg) tg.HapticFeedback.impactOccurred('light');
@@ -1454,30 +1515,22 @@
                 gallery.style.display     = 'none';
                 infoPage.style.display    = 'none';
                 contactPage.style.display = 'none';
-                if (filter === 'Info') {
-                    infoPage.style.display = 'block';
-                } else if (filter === 'Contact') {
-                    contactPage.style.display = 'block';
-                } else {
-                    gallery.style.display = 'grid';
-                    loadGallery();
-                }
+                if (filter === 'Info')         infoPage.style.display    = 'block';
+                else if (filter === 'Contact') contactPage.style.display = 'block';
+                else { gallery.style.display = 'grid'; loadGallery(); }
             });
         });
 
         // ─── Galerie ───
         async function loadGallery() {
             try {
-                const response = await fetch('/api/media');
-                const data = await response.json();
+                const res  = await fetch('/api/media');
+                const data = await res.json();
                 renderGallery(data);
-            } catch (error) {
+            } catch(e) {
                 document.getElementById('gallery').innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">📭</div>
-                        <h3>Aucun contenu</h3>
-                        <p>La galerie est vide pour le moment</p>
-                    </div>`;
+                    <div class="empty-state"><div class="empty-icon">📭</div>
+                    <h3>Aucun contenu</h3><p>La galerie est vide pour le moment</p></div>`;
             }
         }
 
@@ -1485,36 +1538,25 @@
             const gallery  = document.getElementById('gallery');
             const filtered = media.filter(m => m.category === currentFilter);
             window._cards  = filtered;
-
-            if (filtered.length === 0) {
-                gallery.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">📭</div>
-                        <h3>Aucun contenu</h3>
-                        <p>Aucun média dans la catégorie ${currentFilter}</p>
-                    </div>`;
+            if (!filtered.length) {
+                gallery.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div>
+                    <h3>Aucun contenu</h3><p>Aucun média dans ${currentFilter}</p></div>`;
                 return;
             }
-
-            gallery.innerHTML = filtered.map((item, i) => {
-                const cat = item.category.toLowerCase();
-                return `
+            gallery.innerHTML = filtered.map((item, i) => `
                 <div class="card" onclick="openCardModal(${i})">
                     <div class="card-media-container">
                         ${item.type === 'video'
-                            ? `<video class="card-media" src="${item.url}" playsinline></video>
-                               <div class="video-icon">▶️</div>`
-                            : `<img class="card-media" src="${item.url}" alt="${item.name}">`
-                        }
+                            ? `<video class="card-media" src="${item.url}" playsinline></video><div class="video-icon">▶️</div>`
+                            : `<img class="card-media" src="${item.url}" alt="${item.name}">`}
                         <div class="card-overlay"></div>
                     </div>
                     <div class="card-content">
-                        <div class="card-category ${cat}">${item.category}</div>
+                        <div class="card-category ${item.category.toLowerCase()}">${item.category}</div>
                         <h3 class="card-title">${item.name}</h3>
                         ${item.description ? `<p class="card-description">${item.description}</p>` : ''}
                     </div>
-                </div>`;
-            }).join('');
+                </div>`).join('');
         }
 
         // ─── Modal carte ───
@@ -1525,8 +1567,7 @@
             const media = item.type === 'video'
                 ? `<video class="modal-media" src="${item.url}" controls autoplay playsinline></video>`
                 : `<img class="modal-media" src="${item.url}" alt="${item.name}">`;
-            document.getElementById('modalContent').innerHTML = `
-                ${media}
+            document.getElementById('modalContent').innerHTML = `${media}
                 <div class="modal-body">
                     <div class="modal-category">${item.category}</div>
                     <h2 class="modal-title">${item.name}</h2>
@@ -1535,18 +1576,13 @@
             document.getElementById('cardModal').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         function closeCardModal() {
             document.getElementById('cardModal').classList.remove('open');
             document.body.style.overflow = '';
             const v = document.querySelector('#modalContent video');
             if (v) v.pause();
         }
-
-        function closeModalBg(e) {
-            if (e.target === document.getElementById('cardModal')) closeCardModal();
-        }
-
+        function closeModalBg(e) { if (e.target === document.getElementById('cardModal')) closeCardModal(); }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCardModal(); });
 
         loadGallery();
