@@ -8,6 +8,8 @@ const ADMIN_IDS = process.env.ADMIN_IDS
     ? process.env.ADMIN_IDS.split(',').map(id => parseInt(id.trim()))
     : [8627182295];
 
+const WEBAPP_URL = 'https://sisi6259-production.up.railway.app';
+
 // ===== INITIALISATION =====
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
 
@@ -48,8 +50,27 @@ bot.onText(/\/start/, (msg) => {
         `👋 Bienvenue ${firstName} !\n\n` +
         `📸 Bienvenue sur le bot SISI 6259\n` +
         `👻 Snap : @sisi622599\n\n` +
-        `Tu recevras les annonces importantes ici.`
+        `Tu recevras les annonces importantes ici.\n` +
+        `Clique sur le bouton ci-dessous pour ouvrir la galerie 👇`,
+        {
+            reply_markup: {
+                inline_keyboard: [[
+                    { text: '📸 Ouvrir la Galerie', web_app: { url: WEBAPP_URL } }
+                ]]
+            }
+        }
     );
+});
+
+// ===== COMMANDE /app =====
+bot.onText(/\/app/, (msg) => {
+    bot.sendMessage(msg.chat.id, '📸 Ouvre la galerie SISI 6259 :', {
+        reply_markup: {
+            inline_keyboard: [[
+                { text: '📸 Ouvrir la Galerie', web_app: { url: WEBAPP_URL } }
+            ]]
+        }
+    });
 });
 
 // ===== COMMANDE /broadcast (admin uniquement) =====
